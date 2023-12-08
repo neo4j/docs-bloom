@@ -5,34 +5,36 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon -e adoc --exec \"npm run build && npm run serve\"",
+    "start": "nodemon -e adoc -w modules --exec \"npm run build && npm run serve\"",
     "serve": "node server.js",
-    "build": "antora --stacktrace preview.yml",
-    "lint": "node scripts/lint-links.js"
+    "build": "antora preview.yml --stacktrace --log-format=pretty",
+    "build-verify": "antora --stacktrace --fetch preview.yml --log-format=json --log-level=info --log-file ./build/log/log.json"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/neo-technology/neo4j-insight.git"
+    "url": "git+https://github.com/neo4j/docs-bloom.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/neo-technology/neo4j-insight/issues"
+    "url": "https://github.com/neo4j/docs-bloom/issues"
   },
-  "homepage": "https://github.com/neo-technology/neo4j-insight#readme",
+  "homepage": "https://github.com/neo4j/docs-bloom#readme",
   "dependencies": {
-    "@antora/cli": "^3.0.1",
-    "@antora/site-generator-default": "^3.1.1",
-    "@neo4j-antora/antora-modify-sitemaps": "^0.4.2",
-    "@neo4j-documentation/macros": "^1.0.0",
+    "@antora/cli": "^3.1.5",
+    "@antora/site-generator-default": "^3.1.5",
+    "@neo4j-antora/antora-modify-sitemaps": "^0.4.4",
+    "@neo4j-documentation/macros": "^1.0.2",
     "@neo4j-documentation/remote-include": "^1.0.0"
   },
   "devDependencies": {
-    "asciidoctor-pdf": "^1.0.0-alpha.12",
-    "cheerio": "^1.0.0-rc.3",
-    "express": "^4.17.1",
-    "hyperlink": "^4.6.0",
-    "nodemon": "^2.0.15"
+    "express": "^4.18.2",
+    "nodemon": "^3.0.2"
+  },
+  "overrides": {
+    "@antora/site-generator-default": {
+      "glob-parent": "6.0.2"
+    }
   }
 }
