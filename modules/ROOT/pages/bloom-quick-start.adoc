@@ -1,0 +1,61 @@
+:description: This chapter describes the quickest way to get started with Neo4j Bloom.
+[[quick-start]]
+= Tips for a quicker start
+
+
+Neo4j Bloom is designed to be simple and intuitive enough for a business person or knowledge worker to pick up and use.
+Follow these quick start tips if you would like to play with the interface on your own before returning to this guide to learn about the more advanced and nuanced features.
+If you are new to graph visualizations with Neo4j, it is recommended that you read through xref::/about-bloom.adoc[About Neo4j Bloom] and xref::/bloom-perspectives/index.adoc[Perspectives] sections of this guide.
+
+You will need a functioning Neo4j Bloom application and access to a Neo4j graph to get started.
+Refer to the xref::/bloom-installation/index.adoc[Installation] chapter if you are unsure that your Bloom application is correctly set up.
+Several https://neo4j.com/developer/example-data[example data sets] are available for getting started quickly with Neo4j.
+The _Movies_ or _Northwind_ example datasets are good choices for a easy start.
+
+The Bloom application will need a xref::/bloom-perspectives/bloom-perspectives.adoc[Perspective] as a business view of the graph to which it connects.
+The first time that Bloom connects to a graph, it shows a selection of already defined Perspectives or, if you have the access rights, offer to auto-generate a new one.
+Auto-generation is a good place to jump quickly into graph exploration.
+Keep in mind that a complete scan of the database will be performed when you auto-generate a Perspective and if your database is large, this can take a long time.
+In that case, you may opt for a quick scan instead.
+See xref::/bloom-perspectives/database-scans.adoc[Database scans] for more information.
+
+Graph exploration begins by searching for interesting parts of the graph.
+
+[.shadow]
+image::overview.png[width=800]
+{nbsp} +
+
+== Start by searching
+
+By loading the _Northwind_ https://neo4j.com/developer/example-data[example data set], you can start interacting with the graph right away.
+If you need help loading the dataset, the process is described in detail https://neo4j.com/developer/neo4j-bloom/#data-set[here].
+
+Once loaded, try searching for:
+
+* everything in a category, like _Products_.
+* particular things in a category, like _Products with productName _Louisiana_.
+* qualified patterns, like _Suppliers of Products with productName Louisiana_.
+* long patterns, like _Customer purchase details about order for product with productName Louisiana_.
+* generic patterns, like _Categories of Products with Suppliers_.
+
+
+[NOTE]
+For faster search performance, it is highly recommended to set up indexes in the Neo4j database for all properties that should be searchable in Bloom.
+See https://neo4j.com/docs/operations-manual/4.0/performance/index-configuration/[Operations manual -> Index configuration]
+{nbsp} +
+
+== Interact with the visualization
+
+With a currently displayed graph visualization you can:
+
+* zoom in and out using the buttons or scroll using a mouse or touchpad.
+* double-click a node to see details.
+* right-click to bring up a context menu and try the available options.
+* short press click in an empty spot and drag to pan the visualization.
+* long press click and drag to begin a marquee selection.
+* click on the legend panel to select / deselect all nodes in a category.
+
+[TIP]
+--
+Watch the https://www.youtube.com/playlist?list=PL9Hl4pk2FsvWqH11v_WXVNIgb4iHjqHgs[Bloom video series] on product features as a learning tool while you get started with the product.
+--

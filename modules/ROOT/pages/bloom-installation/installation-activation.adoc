@@ -1,0 +1,249 @@
+:description: This section describes how to install and activate Neo4j Bloom.
+
+[[nstallation-activation]]
+= Installation and activation
+
+[[installation-desktop-hosted]]
+== Neo4j Desktop hosted Bloom client
+
+Neo4j Bloom client comes pre-packaged within Neo4j Desktop.
+Starting with Bloom 1.3, the Bloom client is enabled and ready to use in Desktop.
+In Neo4j Desktop 1.2.5 and prior versions, the Bloom client app can be added to any project.
+Starting with Desktop 1.2.6, you can find and directly run the Bloom app from the “Applications” sidebar drawer.
+In case you are not seeing the Bloom app there, make sure `offline mode` is disabled and restart your Desktop.
+Your Desktop will automatically search for the latest version of Bloom and install it if it is either missing or an older version.
+
+[IMPORTANT]
+====
+The Bloom client's visualization and exploration features are available with any locally installed databases in Desktop.
+Access to a remote Neo4j database and features used for collaboration, such as persistent storage and security, require the <<_bloom_server, Bloom server>> component.
+====
+
+For more information on licensing terms, refer to the Neo4j Desktop license agreement from the “About” section of Neo4j Desktop.
+
+[NOTE]
+====
+Bloom is by default available to all users of the Neo4j database.
+This can be managed through role-based access control (RBAC) in Neo4j.
+See step 5 *Setup users/roles in the database* further on, also link:https://neo4j.com/docs/cypher-manual/current/access-control/[Cypher Manual -> Access control] and link:https://neo4j.com/docs/operations-manual/current/authentication-authorization/access-control/[Operations Manual -> Fine-grained access control] for more information on users and roles.
+====
+
+[[installation-bloom-server]]
+== Bloom server
+
+The Bloom server component installs as a Neo4j database plugin.
+Before you can begin, download the Bloom server package https://neo4j.com/download-center/#bloom[here] and make sure you have a valid activation key for the Bloom server.
+The server activation key can be obtained from your Neo4j representative.
+
+
+
+[[installing-server-plugin]]
+=== Installing server plugin
+
+[NOTE]
+====
+Bloom does not support Neo4j 3.x.
+====
+
+
+.*Installation Steps:*
+. *Get the Bloom server plugin*: Unzip the downloaded Bloom server package.
+The Bloom plugin (.jar file) to use depends on your Neo4j server version.
+For example, if you are using Neo4j 4.4.9 and Bloom 2.4.1, use `bloom-plugin-4.x-2.4.1.jar`.
+. *Place the plugin*: First, take a look at the table in link:{operations-manual-base-uri}/current/configuration/file-locations/[Operations Manual -> File locations] to find where to put the Bloom plugin `.jar` file.
+Make sure to copy the file to the correct plugins directory.
+. *Place the activation key*: Place the activation key file provided on the Neo4j database server.
+You may place the file in any location of your choice. To avoid getting the file inadvertently overwritten, you may place it outside the Neo4j installation directory.
+. *Edit config file*: Then, you will need to edit the `neo4j.conf` configuration file of the database.
+Read link:{operations-manual-base-uri}/current/configuration/neo4j-conf/#neo4j-conf[Operations Manual -> The neo4j.conf file] section in order to learn more about the `neo4j.conf` file.
+You can find the default location for your OS link:{operations-manual-base-uri}/current/configuration/file-locations/#file-locations-locations[Operations Manual -> File locations].
++
+You need to add a configuration setting with the path to the Bloom license file.
+The configuration setting depends on which version of Neo4j you are using.
++
+With Neo4j 5:
++
+.For Neo4j 5
+[source, conf, indent=0]
+----
+dbms.bloom.license_file=<filepath>
+----
++
+With Neo4j 4.x
++
+.For Neo4j 4.x
+[source, conf, indent=0]
+----
+neo4j.bloom.license_file=<filepath>
+----
++
+Bloom server accepts absolute, i.e. fully qualified starting with the OS base directory, as well as relative file paths, i.e. where the path is relative to the Neo4j database install directory.
++
+For example:
++
+With Neo4j 5:
++
+.For Neo4j 5 using Linux
+[source, conf, indent=0,role=nocopy]
+----
+dbms.bloom.license_file=/etc/neo4j/license/mybloomkey.license
+or
+dbms.bloom.license_file=mybloomkey.license
+----
++
+.For Neo4j 5 using Windows
+[source, conf, indent=0,role=nocopy]
+----
+dbms.bloom.license_file=license/mybloomkey.license
+or
+dbms.bloom.license_file=license\\mybloomkey.license
+or
+dbms.bloom.license_file=mybloomkey.license
+----
++
+With Neo4j 4.x:
++
+.For Neo4j 4.x using Linux
+[source, conf, indent=0,role=nocopy]
+----
+neo4j.bloom.license_file=/etc/neo4j/license/mybloomkey.license
+or
+neo4j.bloom.license_file=mybloomkey.license
+----
++
+.For Neo4j 4.x using Windows
+[source, conf, indent=0,role=nocopy]
+----
+neo4j.bloom.license_file=license/mybloomkey.license
+or
+neo4j.bloom.license_file=license\\mybloomkey.license
+or
+neo4j.bloom.license_file=mybloomkey.license
+----
++
+If you are a Windows user and you need to put the license file on a different drive than where your Neo4j database is installed, use an absolute path.
++
+[NOTE]
+====
+It is recommended to keep the name of the license file simple, i.e. to not use any special characters.
+====
++
+Add the unrestricted procedures setting to allow the Bloom server procedures to run.
++
+[source, conf, indent=0]
+----
+dbms.security.procedures.unrestricted=bloom.*
+----
++
+[IMPORTANT]
+====
+Failing to add Bloom to the list of unrestricted procedures results in an error and you are not able to run Bloom.
+====
++
+If the setting already exists in neo4j.conf, do not add it again but simply append `bloom.*` to the existing value.
+Do the same for the procedure allowlist setting if you are using allowlisting.
++
+[source, conf, indent=0]
+----
+dbms.security.procedures.unrestricted=apoc.*,bloom.*
+dbms.security.procedures.allowlist=apoc.load.*,bloom.*
+----
+In case the Bloom server plugin is also hosting the Bloom client, add the following configuration setting to the hosting Neo4j server or cluster member:
++
+.For Neo4j 5
+[source, conf, indent=0]
+----
+server.unmanaged_extension_classes=com.neo4j.bloom.server=/bloom
+dbms.security.http_auth_allowlist=/,/browser.*,/bloom.*
+----
++
+.For Neo4j 4.3+:
+[source, conf, indent=0]
+----
+dbms.unmanaged_extension_classes=com.neo4j.bloom.server=/bloom
+dbms.security.http_auth_allowlist=/,/browser.*,/bloom.*
+----
++
+. *Setup users/roles in the database*: Manage access for users and roles to the Neo4j database as needed.
+By default, Bloom is available to all users.
+The configuration setting to restrict access to users with certain roles depends on what version of Neo4j you use.
+With Neo4j 5, enable the `dbms.bloom.authorization_role` property in `neo4j.conf` and list the roles that should be authorized.
+With Neo4j 4.x, enable the `neo4j.bloom.authorization_role` property in `neo4j.conf` and list the roles that should be authorized.
+To enable users with other roles to have Bloom access using the server, add the roles to the `dbms.bloom.authorization_role`/`neo4j.bloom.authorization_role` property in `neo4j.conf`, as shown in Example 1 and 2 below.
++
+Example 1: To give access to users with the admin or architect role, the setting would be:
++
+.For Neo4j 5
+[source, conf, indent=0]
+----
+dbms.bloom.authorization_role=admin,architect
+----
++
+.For Neo4j 4.x
+[source, conf, indent=0]
+----
+neo4j.bloom.authorization_role=admin,architect
+----
++
+Example 2: To give access to users with the admin, reader and a custom bloom role, the setting would be:
++
+.For Neo4j 5
+[source, conf, indent=0]
+----
+dbms.bloom.authorization_role=admin,reader,bloom
+----
++
+.For Neo4j 4.x
+[source, conf, indent=0]
+----
+neo4j.bloom.authorization_role=admin,reader,bloom
+----
++
+[NOTE]
+====
+When adding the plugin or changing the configuration file, you will need to restart the Neo4j database for the changes to be ready to use by the Bloom client.
+====
+
+. *Share Perspectives with users*: If needed, create and share Perspectives for any non-admin users who are authorized for Bloom access.
+Best practice for assigning Perspectives is to create a custom role for each Perspective, and add that role to each user who should have access to the Perspective in question.
++
+Alternatively, if users create their own Perspectives, grant them a role where they have access to create new data in the database.
+See https://neo4j.com/docs/operations-manual/current/authentication-authorization/[Operations Manual -> Authentication and Authorization] for more info on roles in Neo4j.
++
+To learn more about sharing perspectives, please see xref::/bloom-perspectives/perspective-storage.adoc[Storage and sharing].
+
+
+=== Updating server plugin
+
+Updating the Bloom server plugin is easy.
+Simply remove the previous plugin from the appropriate plugins directory as mentioned above.
+Place the updated plugin provided in its place.
+
+[NOTE]
+--
+You will need to restart the Neo4j database for the new plugin to be loaded and ready to use by the Bloom client.
+--
+
+=== Accessing Neo4j server hosted Bloom
+
+After configuring Neo4j and installing the plugin, Bloom will be available using `HTTP` or `HTTPS` as configured with one of these URLs.
+
+[source, URL, indent=0]
+----
+http://<neo4j-server-host>:<http-port>/bloom/
+
+https://<neo4j-server-host>:<https-port>/bloom/
+----
+
+[IMPORTANT]
+====
+If using SSL, ensure that `dbms.ssl.policy.client_auth=NONE` is set in link:{operations-manual-base-uri}/current/configuration/neo4j-conf/#neo4j-conf[`neo4j.conf`].
+====
+
+Users need to log in with their credentials as configured for the Neo4j database.
+
+[NOTE]
+--
+Bloom is supported on Chrome, Firefox and Edge web browsers.
+You may experience glitches or unexpected behaviour if using another web browser.
+--

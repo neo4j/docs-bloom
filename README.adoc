@@ -1,0 +1,3 @@
+= Bloom documentation
+
+image::images/daisy.jpg[Bloom documentation]

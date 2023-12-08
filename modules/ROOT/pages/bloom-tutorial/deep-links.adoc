@@ -1,0 +1,124 @@
+:description: This section describes how to use deep links into Neo4j Bloom.
+
+[[bloom-deep-links]]
+= Deep links into Bloom
+
+There are many cases where it may be useful to start Bloom with an initial context, allowing your Bloom journey to begin with that context in mind.
+This context may be supplied by an application, website, email or another medium you are using.
+To allow for an initial context, a link can be constructed with a pattern or search query that contains the identifiers needed so you immediately can begin exploration from that starting point.
+
+Neo4j Bloom deep links are URLs that contain parameters that specify the context for exploration.
+Links can be constructed for all Bloom deployments; the server-hosted and the Desktop-hosted Bloom application, in addition to Bloom in Neo4j Aura.
+While the link parameters for all deployments are the same, the URLs are specific to whether you are trying to access server-hosted Bloom, Desktop-hosted Bloom, or Bloom in Aura (through the _Explore_ tab in Workspace or as a standalone app in the Aura console).
+
+Bloom accepts the following parameters in a deep link:
+
+.Deep link parameters
+[cols="1,3"]
+|===
+| Parameter   | Description
+|`search` | Any xref::/bloom-visual-tour/search-bar.adoc[search input types] that Bloom recognizes.
+|`perspective` | Name of Perspective.
+|`run=true/false` | Run query or not (set to `false` by default).
+|===
+
+The parameters are optional and should be URL encoded if they contain spaces or other special characters.
+
+[NOTE]
+====
+Perspectives are database-specific and the database is stored with the Perspective, which means that when you open Bloom via a deep link, the database is automatically selected based on the Perspective.
+====
+
+When the deep link is clicked, search context passed in gets populated into the search input.
+If the `run` parameter is set to `true`, Bloom will automatically run the first query suggestion fetched.
+If the `run` parameter is omitted, it is set to `false` and Bloom will only use the search input to fetch suggestions.
+Perspective context is used to select the intended perspective for the particular exploration.
+
+To illustrate this, picture that you are given a list of employees in a particular function:
+
+image::bloom-deeplink-list.png[width=800]
+
+Based on this, you may wish to explore the graph of one specific employee in Bloom:
+
+[.shadow]
+image::bloom-deeplink.png[width=800]
+
+
+== Server-hosted Bloom
+
+When you want to link to Bloom in a web browser, you need to construct the link for server-hosted Bloom.
+The link format is as follows:
+
+
+[source, html, indent=0]
+----
+http://<server_hosting_Bloom>[:<http-port>]/bloom/[?<parameter>][&<parameter>]...
+https://<server_hosting_Bloom>[:<https-port>]/bloom/[?<parameter>][&<parameter>]...
+----
+
+In the example above, the link would be constructed as follows (if you want the link to run the query):
+
+[source, html, indent=0]
+----
+http://1.1.1.1:7474/bloom/?search=employee%203115112&perspective=HRM%20Perspective&run=true
+----
+
+Remember that the parameters should be URL encoded if they contain spaces or special characters.
+
+
+== Desktop-hosted Bloom
+
+When you want to link to Bloom and open it in Neo4j Desktop, you need to construct the link for Desktop-hosted Bloom.
+The link format is as follows:
+
+[source, html, indent=0]
+----
+neo4j://graphapps/neo4j-bloom/[?<parameter>][&<parameter>]...
+----
+
+In the example above, the link would be constructed as follows (if you want the link to run the query):
+
+[source, html, indent=0]
+----
+neo4j://graphapps/neo4j-bloom/?search=employee%203115112&perspective=HRM%20Perspective&run=true
+----
+
+Remember that all parameters should be URL encoded if they contain spaces or other special characters.
+
+[NOTE]
+====
+A deep link to Desktop-hosted Bloom requires an _active_ connection to the specific Neo4j graph for which the link is applicable, and uses the user credentials stored in Desktop for the graph in question.
+====
+
+== Bloom in Aura
+
+As mentioned in xref:../bloom-installation/bloom-deployment-modes.adoc#bloom-in-aura[Bloom in Neo4j Aura], Bloom is available as the _Explore_ tab in Workspace _or_ as a standalone app in the Aura console.
+
+The link format for the Explore tab in Workspace is as follows:
+
+[source, html, indent=0]
+----
+https://workspace.neo4j.io/workspace/explore[?<parameter>][&<parameter>]
+----
+
+In the example above, the link would be constructed as follows (if you want the link to run the query):
+[source, html, indent=0]
+----
+https://workspace.neo4j.io/workspace/explore?search=employee%203115112&perspective=HRM%20Perspective&run=true
+----
+
+If you want to link directly to the Bloom/Explore app in the console, the link format is as follows:
+
+[source, html, indent=0]
+----
+https://bloom.neo4j.io/index.html?connectURL=[AURADBCONNECTINFO][&<parameter>][&<parameter>]
+----
+
+In the same example search as above, the link would be constructed as follows (if you want the link to run the query):
+
+[source, html, indent=0]
+----
+https://bloom.neo4j.io/index.html?connectURL=neo4j%2Bs%3A%2F%2F93918bf2.databases.neo4j.io&_ga=2.79292244.1965170597.1699952358-1070484742.1697457115&search=employee%203115112&perspective=HRM%20Perspective&run=true
+----
+
+Remember that all parameters should be URL encoded if they contain spaces or other special characters.

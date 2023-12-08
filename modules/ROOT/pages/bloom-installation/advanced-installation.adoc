@@ -1,0 +1,431 @@
+:description: This section describes advanced installation and configuration of Neo4j Bloom.
+
+[[advanced-installation]]
+= Advanced installation and configuration
+
+[[bloom-web-app-on-separate-server]]
+== Bloom web app hosted in a separate web server
+
+You may want to host the Bloom client on a separate web server, instead of on the Neo4j database server.
+This may be desirable for security reasons, or for load balancing reasons to separate the types of traffic directed at different types of servers.
+In this case, the Bloom client UI (provided as a separate package) is hosted by your own web server, while the Bloom server plugin is still installed on the Neo4j database (whether single instance or clustered setup).
+The Bloom client connects to the Neo4j database, either via serving a json file containing the Neo4j database discovery URL, or by using a _connectURL_ parameter.
+This is described in detail further on.
+
+image::web-server-hosted-bloom-client.svg[width=550,align="center"]
+
+For scenarios where you want to host Bloom client on a web server separate from the Neo4j database server, the Bloom client UI is available as a web asset bundle.
+The Bloom plugin is still required to be installed on the Neo4j database server, see xref:bloom-installation/installation-activation.adoc#installing-server-plugin[Installing server plugin] for more information.
+Follow the steps below to set up the Bloom client:
+
+. Download the Bloom server package https://neo4j.com/download-center/#bloom[here].
+. Unzip the downloaded Bloom server package.
+Look for a web asset bundle in the form of `neo4j-bloom-<version>-assets.zip`.
+. Unzip and setup the files in the bundle to be served from your web server.
+. Serve a json file containing Neo4j database discovery URL, which the Bloom client uses to connect to the intended Neo4j database server.
+The discovery URL is expected in the following format and saved as `discovery.json` in the root folder of your web server.
++
+[source, json, indent=0]
+----
+{
+	"bolt" : "bolt://<neo4j-database-server-address>:<bolt-port>"
+}
+----
++
+The asset bundle provided does **not** include a `discovery.json` file, but one needs to be created when needed in order to specify the correct Neo4j server and port information.
+. Users should be able to access Bloom by loading the provided `index.html` in a web browser using your configured web server path.
+
+[[bloom-connect-url]]
+Another way to connect Bloom to a Neo4j server is to use a _connectURL_ parameter.
+The server address need to be properly URL escaped and in the following format: `https://[bloom-hosted-location]/index.html?connectURL=[database.server.address]`.
+
+For an instance hosted in Aura, for example, the connectURL could look like this:
+
+[source, URL]
+----
+https://bloom.neo4j.io/index.html?connectURL=neo4j%2Bs%3A%2F%2Fcf0e20ef.databases.neo4j.io
+----
+
+=== Web server configuration
+
+Neo4j has no specific recommendations about what web server to use for hosting the Bloom assets.
+Since it's only serving static files it could be any web server that could be configured to do so (for example Apache, nginx, IIS).
+The only requirement is that it can handle the number of users, and thus the number of requests, you have.
+Bloom will make in the order of 10:s of requests per user per session.
+
+If you have configured your Neo4j instance to only accept secured Bolt connections, you need to configure the web server to serve the assets over https and make sure the needed TLS certificates are available.
+Otherwise, Bloom may be unable to connect to Neo4j in many web browsers because of security policies that forbid mixing secured and unsecured connections.
+
+This is an example configuration for the nginx web server:
+
+[source, nginx, indent=0]
+----
+user       www www;
+worker_processes  1;  # If this nginx instance is the only thing running on this machine this can be set to number of cores
+
+error_log  logs/error.log;
+error_log  logs/error.log  notice;
+error_log  logs/error.log  info;
+
+pid        logs/nginx.pid;
+
+events {
+    worker_connections  1024;
+}
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    sendfile        on;
+    keepalive_timeout  65;
+
+    server {
+        listen       80;
+        server_name  my-bloom-domain;
+
+        location / {
+            root   /path/to/bloom/asset/files;
+            index  index.html;
+        }
+    }
+
+    # HTTPS server
+    #
+    #server {
+    #    listen       443 ssl;
+    #    server_name  my-bloom-domain;
+
+    #    ssl_certificate      cert.pem;
+    #    ssl_certificate_key  cert.key;
+
+    #    ssl_session_cache    shared:SSL:1m;
+    #    ssl_session_timeout  5m;
+
+    #    ssl_ciphers  HIGH:!aNULL:!MD5;
+    #    ssl_prefer_server_ciphers  on;
+
+    #    location / {
+    #        root   /path/to/bloom/asset/files;
+    #        index  index.html;
+    #    }
+    #}
+}
+
+----
+
+[[bloom-ldap]]
+== Using Bloom with LDAP authentication
+
+In order to use Bloom with a Neo4j installation that uses LDAP authentication, Neo4j needs to be configured to use both native and LDAP authentication simultaneously.
+This is because the perspective sharing feature of Bloom requires the ability to list all the roles that are configured, and this is not possible when only using LDAP.
+
+//There is a slight difference in the configuration depending on what version of Neo4j you are using.
+// With *Neo4j 3.5*, you enable both native and LDAP auth in `neo4j.conf` using the following configuration:
+//
+// [source, conf, indent=0]
+// ----
+// dbms.security.auth_provider=native,ldap
+// ----
+
+Note that Bloom does not support Neo4j 3.x databases.
+Use the following configuration for all installations with Neo4j 4.x and 5:
+
+[source, conf, indent=0]
+----
+dbms.security.authentication_providers=native,ldap
+dbms.security.authorization_providers=native,ldap
+----
+
+*LDAP Example Scenario*
+
+Say the following users are defined in LDAP:
+
+[cols="30,70a", options=header]
+|===
+| User
+| Attributes
+
+| cn=Homer
+| memberOf: cn=bloom_group_1
+
+memberOf: cn=bloom_reader
+
+| cn=Marge
+| memberOf: cn=bloom_group_2
+
+memberOf: cn=bloom_reader
+
+| cn=Lisa
+| memberOf: cn=bloom_admin
+
+|===
+
+The group to role mapping can be configured in `neo4j.conf` as follows:
+
+[source, conf, indent=0]
+----
+dbms.security.ldap.authorization.group_to_role_mapping=   \
+ "cn=bloom_group_1,dc=example,dc=com" = role_1;           \
+ "cn=bloom_group_2,dc=example,dc=com" = role_2;           \
+ "cn=bloom_admin,dc=example,dc=com"   = admin;            \
+ "cn=bloom_reader,dc=example,dc=com"  = reader
+----
+
+Finally, the roles `role_1` and `role_2` need to be created in the database (by using the `dbms.security.createRole` procedure).
+
+Remember to authorize all the roles who need Bloom access to the `neo4j.bloom.authorization_role` (with Neo4j 4.x)/`dbms.bloom.authorization_role` (with Neo4j 5) configuration property as described in the xref::/bloom-installation/installation-activation.adoc#installing-server-plugin[Installing server plugin] section.
+
+It should now be possible to log into Bloom with the user _Lisa_ and create two perspectives, say _Nuclear waste_ and _Painting_.
+If _Lisa_ then assigns the _Nuclear waste_ perspective to _role_1_ and _Painting_ to _role_2_, the user _Homer_ will get the _Nuclear waste_ perspective when he logs in, but _Marge_ will get the _Painting_ perspective.
+See https://neo4j.com/docs/operations-manual/current/authentication-authorization/ldap-integration[Operations Manual -> LDAP Integration] to learn more about LDAP support in Neo4j.
+
+
+
+[[bloom-sso]]
+== Bloom Single Sign-On (SSO)
+
+Neo4j Bloom provides support for Single Sign-On (SSO) providers.
+This is an Enterprise feature and requires specific configuration and a (self-hosted) Neo4j Server v4.4 and later.
+Additionally, you need a compatible SSO provider (local or external) already configured.
+For more information on the configuration, see link:https://neo4j.com/docs/operations-manual/current/authentication-authorization/sso-integration/#auth-sso-parameters[Operations Manual -> OIDC configuration settings^].
+
+[NOTE]
+====
+For deployments other than with self-hosted Neo4j Server v4.4+, SSO can be configured with a separate OAuth plugin which requires engagement from Professional Services.
+See link:https://neo4j.com/professional-services/[^] for more information about Professional Services.
+====
+
+Supported providers at this time include OpenID Connect (OIDC) OAuth 2.0 providers Google, Keycloak, Microsoft Azure AD, and Okta.
+Bloom supports two authorization flows:
+
+* Authorization Code flow with PKCE
+* Implicit flow
+
+[IMPORTANT]
+====
+It is strongly advised to use PKCE to ensure security.
+Further information about OpenID Connect and OAuth can be found at link:https://openid.net/connect/[https://openid.net/connect/^].
+====
+
+[IMPORTANT]
+====
+Security information should always be exchanged with encrypted transport, and therefore HTTPS should be used.
+Mixed HTTP/HTTPS flows for single sign-on are not supported.
+====
+
+Once your SSO provider is configured, you need to configure Neo4j to use OpenID Connect.
+This is done by updating the link:https://neo4j.com/docs/operations-manual/current/configuration/neo4j-conf/#neo4j-conf[`neo4j.conf`^] file according to the instructions in link:https://neo4j.com/docs/operations-manual/current/authentication-authorization/sso-integration/#auth-sso-configure-sso[Operations Manual -> Configure Neo4j to use OpenId Connect^].
+
+Make sure to avoid duplicate entries in the `neo4j.conf` file.
+
+Bloom needs to be aware of the identity providers available for use.
+When used with Neo4j v4.4+, this is specified the `neo4j.conf` file, as described above.
+
+Deployments that use an earlier version of Neo4j require a separate OAuth plugin and assistance from Professional Services, as mentioned previously.
+However, in such cases, identity providers can be specified in two ways:
+
+* Specify a URL parameter `discoveryURL` that specifies a URL to a json file containing the SSO providers.
+Example for Bloom: `\https://<bloom-server-host>:<http-port>?discoveryURL=https://webhost.com/public/discovery.json`
+* Add information to Bloom's `discovery.json` file located in your Bloom installation at the web root directory.
+Keep in mind that the `discovery.json` must be tailored to your SSO solution.
+
+
+[IMPORTANT]
+====
+Bloom prioritizes in the following order, in case of conflicting data:
+
+. `discoveryURL`
+. `neo4j.conf`
+. `discovery.json`
+====
+
+Deep links also work with SSO authentication, where available.
+
+// The following is commented out for the release of Neo4j 4.4 when SSO is available out-of-the-box and PS involvement is no longer required.
+// This section can remain this way until we're sure we don't need it anymore.
+// Optionally, you may set extra logging for the OAuth2 plugin with these settings in the `neo4j.conf` file.
+// The logs are found in the `neo4j.log` file.
+//
+// [source, properties]
+// ----
+// dbms.jvm.additional=-Dorg.apache.commons.logging.Log=org.apache.commons.logging.impl.SimpleLog
+// dbms.jvm.additional=-Dorg.apache.commons.logging.simplelog.showdatetime=true
+// dbms.jvm.additional=-Dorg.apache.commons.logging.simplelog.log.org.apache.http=DEBUG
+// ----
+
+
+// . Bloom needs to be aware of the identity providers available for use, this can be done in two ways:
+// .. Add information to Bloom’s `discovery.json` file located in your Bloom installation at the web root directory.
+// .. Specify a URL parameter discoveryURL that specifies a URL to a json file containing the SSO providers.
+// Example for Bloom: `http://<bloom-server-host>:<http-port>?discoveryURL=http://webhost.com/public/discovery.json`
+//
+// The `discovery.json` file must contain entries tailored to your organization’s specific SSO solution.
+// Below is a reference discovery file for the ID provider (IDP) _Keycloak_ containing one SSO provider.
+// It contains all the possible parameters you can provide.
+// You most likely do not need all the parameters.
+// If you are unsure, please consult Neo4j Professional Services to avoid misconfiguration.
+//
+// [source, parameters]
+// ----
+//
+// {
+// 	// other discovery entries
+// 	// e.g. "bolt": "bolt://localhost:7687"
+// 	//
+// 	"sso_providers": [
+// 	 {
+// 			"id": "keycloak-oidc",  // has to be unique in this file!
+// 			"name": "Keycloak", // displayed in UI
+// 			"auth_flow": "pkce",
+// 			"auth_endpoint": "http://localhost:18080/auth/realms/myrealm/protocol/openid-connect/auth",
+// 			"token_endpoint": "http://localhost:18080/auth/realms/myrealm/protocol/openid-connect/token",
+// 			"well_known_discovery_uri": "http://localhost:18080/auth/realms/myrealm/.well-known/openid-configuration",
+// 			"params": {  // can be used for both the auth and the token request
+// 				"client_id": "account",
+// 				"redirect_uri": "http://localhost:8085?idp_id=keycloak-oidc&auth_flow_step=redirect_uri",
+// 				"response_type": "code",  // depends on the auth_flow
+// 				"scope": "openid groups"
+// 			},
+// 			"auth_params": { // optional
+// 				"param_p": "<extra parameter used only for the auth request>"
+// 			},
+// 			"token_params": { // optional
+// 				"client_secret": "<secret-here>", // this may be required by some Idp's and depended on the auth flow.
+// 				"param_p": "<extra parameter used only for the token request>"
+// 			},
+// 			"config": { // optional settings, these allow you to overwrite the defaults
+// 				"implicit_flow_requires_nonce": false, // Default: false; Desc: Specify if the implicit auth flow requries a nonce in the request
+// 				"principal": "preferred_username",  // Default: email, otherwise sub; Desc: Optional, in which token claim the user's principal is specified
+// 				"token_type_principal": "access_token" // Default: access_token; Desc: Which token type is decoded to acquire the specified principal
+// 				"token_type_authentication": "access_token" // Default: access_token; Desc: Which token type is used as password
+// 				"code_challenge_method": "S256" // Default is "S256" and it's the only supported method at this moment.
+// 			}
+// 		}
+// 	]
+// }
+// ----
+//
+// [IMPORTANT]
+// ====
+// `redirect_uri` MUST match exactly the redirect_uri specified in the IdP.
+// ====
+
+
+
+// The following URL parameters support SSO in Bloom:
+//
+// .URL parameters
+// [cols="2,3,3,3", options=header]
+// |===
+// | URL (search parameter)   	| Syntax | Example | Description
+// |`sso_redirect` | `sso_redirect=<idp_id>` 	| `sso_redirect=keycloak-oidc`	| Use to auto-redirect to SSO login page.
+// |`auth_flow_step` | `auth_flow_step=<arg>`	| `auth_flow_step=redirect_uri`	| If the user arrives back to the client application with the URL param `auth_flow_step=redirect_uri`, this indicates that it is time to proceed in the auth process.
+// |`idp_id` | `idp_id=<idp_id>`	| `idp_id=keycloak-oidc` 	| The user arrives with a URL param named idp_id, mapped to the information in the discovery data to figure out how to proceed.
+// |===
+
+
+[[bloom-docker]]
+== Installing Bloom in a Docker container
+
+It is possible to install Bloom in a Docker container as well, using the standard Neo4j Enterprise Docker image.
+You can find all Neo4j Docker images https://hub.docker.com/_/neo4j/[here].
+For more information about the Neo4j Docker image, please see link:{operations-manual-base-uri}/current/docker/introduction#docker-image[Operations Manual -> Using the Neo4j Docker image].
+
+[NOTE]
+--
+Installing the Bloom plugin in a Docker container is only available with Neo4j Enterprise version 4.2.3 or later.
+--
+
+The Neo4j Docker image includes a startup script which automatically downloads and lets you configure the Bloom plugin at runtime, see link:{operations-manual-base-uri}/current/docker/operations/#docker-neo4jlabs-plugins[Operations Manual -> Configure Neo4j Labs plugins] for more information.
+
+Using the Bloom plugin requires a license, which can be provided as a shared volume in your Docker container:
+
+====
+[source, shell, indent=0, subs="attributes+,+macros"]
+----
+docker run -it --rm \
+  --publish=7474:7474 --publish=7687:7687 \
+  -v $HOME/bloom.license:/licenses/bloom.license \
+  --env NEO4J_AUTH=neo4j/test \
+  --env NEO4J_ACCEPT_LICENSE_AGREEMENT=yes \
+  --env NEO4J_PLUGINS='["bloom"]' \ #<1>
+  neo4j:enterprise
+----
+
+<1> this was previously `NEO4JLABS_PLUGINS` which is deprecated in Neo4j 5 and to be removed in a future version.
+====
+
+[[bloom-server-cluster-installation]]
+== Installing Bloom server in a database cluster
+
+When setting up Bloom server in a database cluster, the Bloom plugin needs to be added to **all** servers hosting the database, including both primary and secondary (if any) hostings.
+
+In addition, if the cluster is also used to host the Bloom client, then pick any one server within the cluster to be the designated Bloom-serving instance.
+Make sure HTTP or HTTPS is enabled and have users use that particular instance's address in the URL.
+For example:
+
+[source, url, indent=0]
+----
+http://<cluster-instance-address>:<http-port>/bloom/
+
+https://<cluster-instance-address>:<https-port>/bloom/
+----
+
+If you intend to use the Graph Data Science Library with Bloom in a database cluster, Bloom must connect to a server in the cluster that has the GDS Library plugin.
+
+This can be achieved by connecting to the Bloom plugin on the server that has the GDS Library plugin installed to host Bloom, or by specifying the appropriate server in the cluster with a <<bloom-connect-url, `connectURL`>> parameter.
+
+[NOTE]
+====
+The server that has GDS installed is likely hosting the database in secondary mode and thus any `write` operations need to be routed to a database primary in the cluster.
+For this to be possible, _server-side routing_ needs to be enabled, please see link:{operations-manual-base-uri}/current/clustering/setup/routing/#clustering-routing[Operations Manual -> Server-side routing] and link:https://neo4j.com/docs/graph-data-science/current/production-deployment/neo4j-cluster/[Graph Data Science Manual -> GDS with Neo4j cluster] for more information.
+====
+
+For more information about Neo4j clusters, see link:{operations-manual-base-uri}/current/clustering/[Operations Manual -> Clustering].
+
+image::bloom-in-a-neo4j-cluster.svg[width=700,align="center"]
+
+[[bloom-telemetry]]
+== Settings for Product Analytics
+
+In the Settings drawer, you can control whether or not you want to share telemetry data from Bloom with Neo4j.
+However, these options are disabled if you run Bloom from Neo4j Desktop or Aura since consent settings are inherited from those systems.
+Additionally, when used with Neo4j v4.4 and later, consent settings can be specified in the `neo4j.conf` file.
+When used with Neo4j 5, you include `client.allow_telemetry` as such:
+
+[source, conf, indent=0]
+----
+client.allow_telemetry=true|false
+----
+
+With Neo4j 4.4, instead include `clients.allow_telemetry`:
+[source, conf, indent=0]
+----
+clients.allow_telemetry=true|false
+----
+
+
+// [[storing-perspectives-in-different-db]]  ***not applicable after 2.3***
+// == Storing Perspectives in a different database
+//
+// If you prefer not to mix Perspective information with your other business data in the graph, the Bloom server can be configured to store Perspective information in a separate Neo4j database.
+// In order to store perspectives in another Neo4j database, you have to specify bolt address and credentials required to connect to that database in the `neo4j.conf` configuration file as below.
+// // When used with a Neo4j 3.5 database, both `bolt` or `bolt+routing` protocols can be used.
+// //
+// // [NOTE]
+// // --
+// // This configuration is currently only available with the Bloom 3.x server plugin, i.e. when used with Neo4j 3.5 databases.
+// // --
+//
+// [source, conf, indent=0]
+// ----
+// neo4.bloom.perspectiveStore=bolt://[host]:[port],[username],[password]
+// neo4.bloom.perspectiveStore=bolt+routing://[host]:[port],[username],[password]
+// ----
+//
+// [CAUTION]
+// --
+// This method requires the password to be stored in plain text in the `neo4j.conf` file.
+// Please ensure only authorized individuals have access to the configuration file.
+// --

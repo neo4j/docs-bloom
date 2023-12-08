@@ -1,0 +1,37 @@
+:description: This section describes the Settings drawer in Neo4j Bloom.
+
+[[settings-drawer]]
+= Settings drawer
+
+[.shadow]
+image::bloom-settings-drawer.png[width=400]
+
+[NOTE]
+====
+The Settings drawer is currently not available when using Bloom as _Explore_ in Workspace.
+Therefore, experimental features are not available in Workspace either.
+====
+
+The Settings drawer contains various options for the application.
+The following can be controlled from this drawer:
+
+* *Node query limit* - can be adjusted within a range of 100-10000.
+* *Search timeout* - controls the duration of a search query.
+* *Logout timeout* - controls the time of inactivity before session is logged out, can be turned off to keep session active indefinitely.
+* *Experimental features* - to show features that are available on an experimental basis.
+* *Show restore Scene dialog* - allows you to restore the scene from your previous session.
++
+[NOTE]
+====
+This setting is not available with the Bloom server plugin.
+====
+* *Auto-select results* - automatically selects new nodes on the scene.
+* *Graph layout compatibility mode* - can solve compatibility issues between GPU and WebGL.
+See xref::/bloom-installation/bloom-prerequisites.adoc#compatibility-mode[Compatibility mode] for more information.
+* *Case insensitive search and suggestions* - enables case insensitive use of both search and in suggestions.
+* *Property tooltips* - enables tooltips that shows the properties of a node when you hover over it.
+* *Perspective auto-sync* - automatically adds new categories to Perspectives when new labels are added to the database.
+Enabled by default when using Bloom without the plugin and disabled when used with the plugin.
+See xref::/bloom-perspectives/refresh-perspectives.adoc#bloom-refresh-perspectives[Refresh Perspectives] for more information.
+* *Product Analytics* - consent settings for sharing telemetry data with Neo4j.
+See xref::/bloom-installation/advanced-installation.adoc#bloom-telemetry[Settings for Product Analytics] for more information.

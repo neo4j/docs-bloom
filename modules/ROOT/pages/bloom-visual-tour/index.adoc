@@ -1,0 +1,16 @@
+:description: This chapter presents a visual overview of the UI of Neo4j Bloom.
+[[visual-tour]]
+= Visual tour
+
+[abstract]
+--
+This chapter presents a visual overview of the UI of Neo4j Bloom.
+--
+
+* xref:bloom-visual-tour/bloom-overview.adoc[Overview]
+* xref:bloom-visual-tour/perspective-drawer.adoc[Perspective drawer]
+* xref:bloom-visual-tour/settings-drawer.adoc[Settings drawer]
+* xref:bloom-visual-tour/legend-panel.adoc[Legend panel]
+* xref:bloom-visual-tour/search-bar.adoc[Search bar]
+* xref:bloom-visual-tour/card-list.adoc[Card list]
+* xref:bloom-visual-tour/bloom-scene-interactions.adoc[Scene interactions]

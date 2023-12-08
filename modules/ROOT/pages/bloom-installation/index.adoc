@@ -1,0 +1,14 @@
+:description: This section describes how to install Neo4j Bloom and its different deployment modes.
+
+[[installation]]
+= Installation
+
+[abstract]
+--
+This chapter describes how to install Neo4j Bloom and its different deployment modes.
+--
+
+* xref:bloom-installation/bloom-prerequisites.adoc[Prerequisites and system requirements]
+* xref:bloom-installation/bloom-deployment-modes.adoc[Bloom deployment modes]
+* xref:bloom-installation/installation-activation.adoc[Installation and activation]
+* xref:bloom-installation/advanced-installation.adoc[Advanced installation and configuration]

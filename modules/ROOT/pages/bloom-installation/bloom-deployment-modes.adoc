@@ -1,0 +1,69 @@
+:description: Thes section describes the different deployment options for Neo4j Bloom.
+
+[[bloom-deployment-modes]]
+= Bloom deployment modes
+
+The Bloom client app in Neo4j Desktop can be used independent of the Bloom server component.
+The client makes a direct connection to your Neo4j graph database and runs queries directly using this connection.
+
+But, Bloom is significantly more useful when both the client and server components are used together.
+In a multi-user, team, or multi-team environment, where collaboration between users is essential, user access control is needed, and persistent, reliable storage is non-negotiable, you will need to use the two components together.
+Further, as explained in xref::/bloom-installation/installation-activation.adoc#installation-desktop-hosted[Neo4j Desktop hosted Bloom client], the Bloom server component is now required when the client connects to a remotely hosted Neo4j database.
+
+
+There are several deployment modes possible for Bloom.
+
+== Bloom app in Neo4j Desktop
+
+*Without the Bloom server*
+
+In this mode, the standalone Bloom app can connect to a Neo4j database locally created in Desktop only.
+Without the Bloom server, the client will store Perspective definition in a local storage allocated to the app.
+This is effectively a single user mode for Bloom and may be used in an evaluation or proof of concept to try Bloom against your graph data.
+
+[WARNING]
+Since local storage is not considered persistent over the long term, consider exporting Perspectives if you wish to preserve them and to avoid accidental deletion or overwrites
+(see xref::/bloom-perspectives/perspective-storage.adoc[Storage and sharing] for more information on how to do so).
+Be careful with the Clear Cache option (in Experimental features), as it removes all locally stored data including any stored Perspectives.
+
+
+image::bloom-app-in-neo4j-desktop-no-server.png[width=400,align="center"]
+
+*With the Bloom server*
+
+This mode is useful for users who want the collaboration and persistent storage capabilities, but prefer a locally installed app.
+In this mode, the Bloom server component will be installed on the Neo4j database.
+The database can be locally created in Desktop, or in a remote server instance or cluster.
+When the Bloom client connects to the Neo4j database, it checks for the presence of the Bloom server plugin.
+If found, the Bloom client relies on the server to provide storage and user authorization capabilities.
+Perspectives can be stored alongside your business data in the property graph, or configured to store in a xref::/bloom-installation/advanced-installation.adoc#storing-perspectives-in-different-db[separate Neo4j instance].
+
+image::bloom-app-in-neo4j-desktop.png[width=500,align="center"]
+
+Even though the Bloom server can package and host the Bloom client, you may prefer to use your own web server and xref::/bloom-installation/advanced-installation.adoc#bloom-web-app-on-separate-server[host the Bloom client separately] from the Neo4j database server.
+
+== Bloom web app hosted by Neo4j database server
+label:enterprise-edition[Enterprise Edition]
+
+The Bloom server component package includes the Bloom client app.
+If the Bloom server is installed as a plugin to the database, then the Neo4j provided web server can also host the Bloom client so users can access it through a web browser.
+This setup is the easiest and most convenient to get started with server-hosted Bloom for users who will access the app via the web.
+It can be used for a single instance or a clustered setup of the Neo4j database.
+
+image::neo4j-hosted-bloom-client.png[width=500,align="center"]
+
+Even though the Bloom server can package and host the Bloom client, you may prefer to use your own web server and host the Bloom client separately from the Neo4j database server.
+See xref::/bloom-installation/advanced-installation.adoc[Advanced Installation] for this scenario.
+
+[[bloom-in-aura]]
+== Bloom in Neo4j Aura
+
+For Aura-users, Bloom can be accessed in three ways:
+
+* Through the _Explore_ tab in Workspace
+* Through the Bloom/Explore app from the Aura console
+* Through a URL via a browser as such `\https://bloom.neo4j.io/index.html?connectURL=[AURADBCONNECTINFO]`
+
+Note that in Neo4j Aura, users are offered to use Neo4j Workspace which is a unified tool that combines the functionality of Neo4j Browser, Neo4j Data Importer, and Bloom.
+In Workspace, the Browser equivalent is called _Query_, the Data Importer equivalent is called _Import_, and the Bloom equivalent is called _Explore_.
+The _Explore_ tab in Workspace offers essentially the same features as Bloom Basic.

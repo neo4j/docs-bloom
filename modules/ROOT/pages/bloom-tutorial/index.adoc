@@ -1,0 +1,17 @@
+:description: This chapter provides a closer look at the most commonly used features of Neo4j Bloom.
+[[tutorial]]
+= Bloom features in detail
+
+[abstract]
+--
+This chapter provides a closer look at the most commonly used features of Neo4j Bloom.
+--
+
+* xref:bloom-tutorial/graph-pattern-search.adoc[Graph pattern search]
+* xref:bloom-tutorial/search-phrases-advanced.adoc[Search phrases for advanced queries]
+* xref:bloom-tutorial/full-text-search.adoc[Full-text search]
+* xref:bloom-tutorial/edit-graph-data.adoc[Edit graph data]
+* xref:bloom-tutorial/gds-integration.adoc[]
+* xref:bloom-tutorial/slicer.adoc[Slicer]
+* xref:bloom-tutorial/export-data.adoc[Scenes and sharing data]
+* xref:bloom-tutorial/deep-links.adoc[Deep links into Bloom]

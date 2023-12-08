@@ -1,0 +1,62 @@
+:description: This section describes how to store and share Perspectives in Neo4j Bloom.
+
+[[bloom-perspective-storage]]
+= Storage and sharing
+
+When the Bloom client is used without the Bloom server plugin, Perspectives are stored locally on the user's machine.
+This location depends on whether Bloom is running in Neo4j Desktop or in a web browser.
+In this setup, Perspectives cannot be shared between different users.
+
+label:enterprise-edition[Enterprise Edition]
+When the Bloom server plugin is used, Perspectives are stored in persistent storage (i.e. Neo4j database) provided by the server plugin.
+Therefore, they can be easily shared between different users who are accessing the same Neo4j server.
+
+Perspective sharing can be explicitly controlled from the Sharing tab in the Perspective definition drawer.
+The best practice for assigning Perspectives is to create a custom role for each Perspective, and add that role to each user who should have access to the Perspective in question.
+See also xref::/bloom-perspectives/perspective-rbac.adoc[].
+
+[.shadow]
+image::perspective-sharing.png[width=400]
+
+
+== Multi-user Perspective editing
+label:enterprise-edition[Enterprise Edition]
+
+When more than one user has access to a Perspective, there are cases when they want to edit the shared Perspective.
+To make sure that a shared Perspective is always up to date, Bloom frequently checks the database for changes.
+If any changes are found, they are merged, the current Perspective is refreshed, and a notification appears in the Perspective drawer.
+The notification tells you which user has made changes and when they were made.
+
+[.shadow]
+image::multi-user-perspective.png[width=500]
+
+[NOTE]
+====
+Automatic Perspective refresh only applies to Perspectives stored with the Bloom server plugin.
+====
+
+
+== Perspective gallery details
+
+As discussed in xref::/bloom-installation/bloom-deployment-modes.adoc[Bloom deployment modes], you can either connect to a Neo4j DBMS that uses the Bloom server plugin or one that does not.
+The deployment option you choose affects the Perspective gallery in different ways.
+
+.*Using the Bloom server plugin* label:enterprise-edition[Enterprise Edition]
+* Perspectives are stored by the plugin in the Neo4j database.
+* Gallery shows only the Perspectives that the plugin returns from its storage.
+* In 4.x, if there are multiple databases, the gallery lets you select the database and then shows the Perspectives only for the current database.
+
+.*Without using the Bloom server plugin*
+* Perspectives are stored in the application’s local storage provided by hosting environment (Neo4j Desktop or the Web browser).
+* Perspectives maintain a reference to the database for which they were created.
+* Gallery shows the Perspectives that are assigned to current database.
+
+
+=== The _home_ database
+
+The concept of a user's _home_ database is introduced in Neo4j 4.3.
+A _home_ icon appears in the database dropdown in the Perspective Gallery to indicate the user's home database.
+More details about the home database can be found in the https://neo4j.com/docs/operations-manual/current/manage-databases/introduction/#manage-databases-default[Operations Manual -> The default and home database].
+
+[.shadow]
+image::home-database.png[width=300]

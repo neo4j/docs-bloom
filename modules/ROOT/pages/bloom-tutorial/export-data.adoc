@@ -1,0 +1,91 @@
+:description: This section describes how to export data from Neo4j Bloom.
+
+[[bloom-export-data]]
+= Scenes and sharing data
+
+label:enterprise-edition[Enterprise Edition]
+
+When you are working with a dataset, sometimes you may need more than one Scene to achieve your objective.
+By using the _Scene_ button, you can expand the Scene panel from which you can add a new Scene, or rename, duplicate, or delete your existing Scene(s).
+The Scene panel is also where you switch between your Scenes, including any Scenes shared with you.
+If you have multiple Scenes saved, the search box allows you to filter through them.
+
+[.shadow]
+image::scene-panel.png[width=400]
+
+Whenever you make any changes to a Scene, i.e. any changes to filters, the graph, the visualization, or the style, the Scene is automatically saved.
+If you switch Scene, the Scene you left is the same when you return to it.
+
+Style settings for a Scene is determined by the Perspective by default.
+If the style settings in your Scene deviate from this default, you can toggle between the Perspective style and the Scene style.
+
+[.shadow]
+image::style-toggle.png[width=300]
+
+[WARNING]
+====
+Scenes rely on node and relationship IDs in Neo4j.
+Changes to this underlying data can cause data in saved Scenes to appear incorrectly if IDs are reused by the database.
+====
+
+Bloom allows you to share your insights.
+When you find an interesting Scene, you have different options to share it, depending on who you want to share it with.
+The options are accessed with the _Export_ button in the top right corner of your Scene.
+
+[.shadow]
+image::share-options.png[width=300]
+
+If you want to share your Scene with someone without access to the database, you can take a screenshot to export.
+This lets you to share your insights without allowing outside interaction with the elements in your Scene.
+
+[.shadow]
+image::export-options.png[width=600]
+
+The other option is to extract your results as CSV files.
+This can be done in different ways.
+You can export _all_ the data in your Scene in one single csv file, `graph-export.csv`, by leaving that box checked.
+This option returns _all_ the data for every relationship, i.e. start node info, end node info, as well as relationship info.
+Additionally, you can add separate csv files for nodes and relationships, respectively, by leaving those boxes checked as well.
+
+If you want to refine the results in the selected files (`graph-export.csv`, `node-export.csv`, and/or `relationship-export.csv`) you can enable/disable both node labels and relationship types to be included or excluded.
+You can select which properties of both nodes and relationships to include/exclude as well.
+By default, all boxes are checked and all labels and relationship types are enabled.
+
+[NOTE]
+====
+If the Scene only contains nodes and no relationships, both the `graph-export.csv` and `relationship-export.csv` options are disabled.
+====
+
+Exporting data in a Scene as CSV files allows you to use your results in applications other than Bloom.
+
+The third option is to share your Scene with other users of the same database.
+
+When sharing a Scene, you can either select which roles you would like to share it with or use the _Copy link_ button.
+The roles available depends on which roles are available for sharing the current Perspective and can be managed in the Perspective drawer.
+See xref::/bloom-perspectives/perspective-storage.adoc[] in the Perspectives-chapter for more information on roles and sharing.
+For more information on roles and their access, see link:https://neo4j.com/docs/operations-manual/current/authentication-authorization/[Operations Manual -> Authentication and authorization].
+
+Any Scenes shared with you can be found in the _Scene_ panel, expanded from the _Scene_ button, as described earlier in this section.
+
+When you create a Scene, you are its owner and only the owner of a Scene can make any changes to it.
+If a Scene has been shared with you, you can make a copy of it and save your own changes.
+Note that you need to have write access to the database to be able to make any changes at all.
+
+[.shadow]
+image::scene-sharing.png[width=400]
+
+[NOTE]
+====
+The use of multiple Scenes and Scene sharing is only available when using the Bloom plugin.
+Other deployments allow only one Scene, but you can still export both screenshots of your Scene and as CSV files.
+====
+
+
+// In this example, you want a list of all German customers that order products from the `Seafood` category to pass on to a hypothetical marketing department for a promotion.
+// Using the _Germans ordering Seafood_ Search phrase from above, the scene displays the customers you are looking for.
+// The context menu allows you to export your current scene as a screenshot or CSV.
+// You can share the relevant file(s), or all, with marketing.
+// If you need to edit the scene after using the Search phrase, for example remove a customer that should be exempt from the coming promotion, do so and export once you are satisfied.
+// Only the nodes and relationships shown in the current scene will be exported.
+//
+// image::export-Scene-options.png[width=600]

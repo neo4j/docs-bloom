@@ -1,0 +1,66 @@
+:description: Prerequisites for Neo4j Bloom.
+
+[[bloom-prerequisistes]]
+= Prerequisites and system requirements
+
+[[bloom-client]]
+== Bloom client
+
+* User access to a Neo4j Enterprise Edition database.
+* GPU-enabled client machine or VM, discrete GPU is preferred.
+
+[TIP]
+Note that a GPU passthrough setup, with a discrete GPU assigned to each VM, can be used in case the VM on the client side doesn't have a GPU.
+
+Neo4j Desktop hosted:::
+** Neo4j Desktop 1.2.5 and above.
+
+Web server hosted:::
+** Chrome, Firefox or Edge web browser.
+
+[TIP]
+For faster search performance, it is highly recommended to set up indexes in the Neo4j database for all properties that should be searchable in Bloom.
+In general, full-text search indexes are recommended and are required if you want case-insensitive text matching.
+
+
+[[compatibility-mode]]
+=== Compatibility mode
+
+Note that sometimes, due to compatibility issues between GPU and WebGL, the visualization may not appear at all.
+This issue is most common on Intel embedded GPUs running under a Linux operating system, but it may also be found in other configurations.
+Enabling `Graph layout compatibility mode` (found in `Settings` of the Bloom client) can help solve this issue and make the visualization appear.
+However, some of the application functionality may not work as expected.
+We recommend using a Windows or Mac client environment with discrete GPUs.
+
+[.shadow]
+image::compatibility-mode.png[width=400,align="center"]
+
+
+[[bloom-server]]
+== Bloom server
+
+* Admin access to a licensed Neo4j Enterprise Edition database.
+* Neo4j Bloom server activation key.
+
+
+[NOTE]
+--
+To obtain activation keys for the Bloom client or server components, ask your friendly neighborhood Neo4j representative.
+--
+
+[[version-compatibility]]
+== Version compatibility
+
+* Neo4j Enterprise Edition database versions supported: 5.x+, 4.4.0+, 4.3.0+.
+* Chrome, Firefox, and Edge (based on Chromium) browsers: Latest version recommended.
+* The Fabric capability of Neo4j 4.x is currently not supported.
+* Bloom is compatible with currently supported version of the Neo4j Graph Data Science library.
+See link:https://neo4j.com/docs/graph-data-science/current/installation/supported-neo4j-versions/[Supported Neo4j versions] for more information.
+A supported version of the GDS plugin must be installed on the DBMS in order to use the GDS functionality in Bloom.
+
+For more information on supported versions of Neo4j, see link:https://support.neo4j.com/hc/en-us/articles/115013134648-Neo4j-Supported-Versions[Neo4j Supported Versions].
+
+[NOTE]
+--
+Keep in mind that if the Bloom client is used with the server component, both client and server should be the same exact version.
+--

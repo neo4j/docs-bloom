@@ -1,0 +1,178 @@
+:description: This chapter introduces the main features and components of Neo4j Bloom.
+[[about-bloom]]
+= About Neo4j Bloom
+
+[abstract]
+--
+This chapter introduces the main features and components of Neo4j Bloom .
+--
+
+[[bloom-features]]
+== Bloom features
+
+The core set of Bloom features can be visualized as shown in this picture.
+
+image::image20.png[width=800]
+
+* *Perspective* - the lens through which you view graph data, can be customized for different business purposes.
+See xref::/bloom-perspectives/bloom-perspectives.adoc[] or watch the link:https://www.youtube.com/watch?v=GV3WCEsHRYI&list=PL9Hl4pk2FsvWqH11v_WXVNIgb4iHjqHgs[Bloom video series] for more details on this feature.
+* *Visualization* - high performance, GPU-powered physics and rendering.
+* *Exploration* - directly interacts with the data to explore connections and details.
+* *Inspection* - see all the record details and browse to connected records.
+* *Editing* - create records, connect data, update information.
+* *Search* - find information, using advanced near-natural language Search phrases.
+
+[TIP]
+--
+Watch the https://www.youtube.com/playlist?list=PL9Hl4pk2FsvWqH11v_WXVNIgb4iHjqHgs[Bloom video series] to see these product features in action.
+--
+
+=== Different levels of access
+
+Some features in Bloom are only available if you have Bloom Enterprise, which requires a license and server side plugin.
+The table below shows the main differences between basic access and Bloom Enterprise.
+
+//Check Mark
+:check-mark: icon:check[]
+
+//Cross Mark
+:cross-mark: icon:times[]
+
+.Feature comparison
+[cols="<,<a,<a", options=header]
+|===
+| Bloom features
+| Basic access
+| Bloom Enterprise
+
+| Near-natural language search
+| {check-mark}
+| {check-mark}
+
+| Exploration
+| {check-mark}
+| {check-mark}
+
+| Use with local database
+| {check-mark}
+| {check-mark}
+
+| Use with remote database
+| {cross-mark}
+| {check-mark}
+
+| Scene saving
+| {cross-mark}
+| {check-mark}
+
+| Perspective storage
+| Local to client
+| In database
+
+| Sharing and authorization
+| {cross-mark}
+| {check-mark}
+|===
+
+[[bloom-components]]
+== Components of Neo4j Bloom
+
+The Bloom application consists of two components:
+
+* a client interface that you use to visualize and explore your graph data.
+* a server-side database plugin that enables user authorization and collaboration capabilities.
+
+{nbsp} +
+
+=== Bloom client
+
+The Bloom client provides you with the user interface to define Perspectives, search your graph, visualize graph results, and refine/explore/interact with the graph visualization to get insights.
+You can also inspect property details about the nodes and relationships returned, as well as make edits directly to the underlying graph data, assuming you have the requisite permissions.
+
+The Bloom client can be hosted on a server and accessed via a web browser.
+You can also use it in Neo4j Desktop as a graph app.
+
+[[web-server-hosted]]
+==== Web server hosted
+
+In this option, the Bloom client is available as a web app that is hosted by a web server and accessed using a web browser.
+This setup requires no local install on your user machine.
+This option is most convenient if you prefer web-based apps, have restrictions on installing applications locally, or have strict firewall security in your network that may interfere with local applications.
+
+==== Neo4j Desktop hosted
+
+Bloom client is available for free in Neo4j Desktop for local databases (from Bloom 1.3.0 onwards) and does not require installation.
+This setup may be desirable if you already run Neo4j Desktop, prefer using native apps, and like the convenience of automatic updates for new versions.
+
+
+{nbsp} +
+
+=== Bloom server
+
+There is a Bloom server component which installs as a Neo4j database plugin (see the xref::/bloom-installation/index.adoc[] chapter for more details).
+
+==== Persistent storage
+
+The Bloom server supplies the necessary runtime procedures for the Bloom client to store, manage and retrieve Bloom Perspectives in a persistent store.
+This persistent storage is necessary to allow for sharing, reliable access and backup of the stored information.
+Thus, the Bloom server enables sharing and collaboration between users in and across project teams.
+
+By default, the Bloom server will store Perspective data in the Neo4j database, where the plugin is installed.
+Perspectives are stored as nodes with specific properties to capture their definition and other metadata.
+This data is stored alongside your business data in the property graph, although it is separated using Bloom-specific labels added to the Perspective nodes.
+If applications other than Bloom have access to the same property graph, such Perspective information can be accessible to other applications depending on the queries they run on the property graph.
+
+If you prefer not to mix Perspective information with your other business data in the graph, the Bloom server can be configured to store Perspective information in a separate Neo4j instance.
+
+==== Security
+
+Neo4j Bloom relies on the security features of the Neo4j database for users, roles, authentication and authorization.
+
+User authentication is managed by the Bloom client.
+In a web-hosted mode, Bloom asks you for your user credentials and in a Desktop-hosted mode, Bloom gets your user credentials from the Desktop.
+In either case, Bloom sends the credentials to be authenticated in the database layer.
+Neo4j Bloom can be configured to support all database authentication providers as described in https://neo4j.com/docs/operations-manual/current/authentication-authorization/introduction[Authentication providers], except for Kerberos.
+
+Using the Bloom server, an administrator can configure which roles are authorized to use Bloom in their environment.
+The roles can be any combination of native and/or custom roles, including roles used for mapping to LDAP groups.
+A user must have at-least read access to a database in order to connect Bloom to it.
+
+In addition, the Bloom server provides the ability to authorize Perspectives to be accessed only by certain roles.
+
+See also xref::/bloom-installation/advanced-installation.adoc#bloom-ldap[Using Bloom with LDAP authentication] for more information on using Bloom with a Neo4j installation that uses LDAP authentication.
+
+For Bloom to function properly, users need to have permission to access both indexes and constraints in the Neo4j database.
+If a user lacks appropriate permissions, they are not able to log into Bloom.
+To grant access, administrators need to add the required privileges for the Bloom users.
+See link:https://neo4j.com/docs/cypher-manual/current/access-control/database-administration/#access-control-database-administration-index[Cypher Manual -> The INDEX MANAGEMENT privileges] and link:https://neo4j.com/docs/cypher-manual/current/access-control/database-administration/#access-control-database-administration-constraints[Cypher Manual -> The CONSTRAINT MANAGEMENT privileges].
+
+==== Hosting the Bloom client
+
+As discussed in the xref::/about-bloom.adoc#web-server-hosted[Web server hosted] section, the Bloom client can be hosted by a web server.
+The Neo4j database provides a web server that already hosts Neo4j Browser, another web client app.
+The Bloom client can be similarly hosted by the Neo4j web server.
+The Bloom server packages all the Bloom client files with it, and using a couple of configuration settings, can be setup to work with the Neo4j web server to provide Bloom to users on a web browser.
+This is the easiest and most convenient setup to get started with server-hosted Bloom.
+
+Alternatively, you can stand up your own web server and host the Bloom client using it.
+While this setup requires a bit more work, it may be preferable if you would like an extra layer of security between the client browser and the database, or if you would like a clustered setup for the web server with a load-balancer up front.
+
+Refer to xref::/bloom-installation/bloom-deployment-modes.adoc[Deployment modes] section to learn more about the various ways in which Bloom can be deployed in your environment.
+
+
+[[bloom-upgrades]]
+== Bloom upgrades
+
+If running in Desktop, Bloom updates are made available to users automatically.
+Updates for self-hosted or Bloom Server plugin-hosted instances of Bloom can be implemented by following the instructions in the  xref::/bloom-installation/index.adoc[Installation] chapter and using the latest versions of the Bloom jar file or Server plugin.
+Aura users see Bloom updates periodically with no action required on their part.
+
+If Bloom needs to update a perspective due to a version change, the Bloom client does this automatically the first time it connects to a database, for all perspectives the user has access to.
+
+Users or administrators may want to back up perspectives before upgrading the client, to avoid unforeseen issues and/or to revert to an earlier version, if needed.
+There are two ways perspective backups can be performed:
+
+* xref::/bloom-perspectives/perspective-storage.adoc[Exporting perspectives] from Bloom using the client before updating.
+Perspectives can then be imported again later, if needed.
+* Backing up the database, which is where perspectives are stored.
+See https://neo4j.com/docs/operations-manual/current/backup-restore/[Operations manual -> Backup and Restore].
