@@ -235,6 +235,9 @@ http://<neo4j-server-host>:<http-port>/bloom/
 https://<neo4j-server-host>:<https-port>/bloom/
 ----
 
+When constructing the URL, be mindful of how you configured the `server.unmanaged_extension_classes` (as mentioned in step 4 previously) in the `neo4j.conf` file.
+
+
 [IMPORTANT]
 ====
 If using SSL, ensure that `dbms.ssl.policy.client_auth=NONE` is set in link:{operations-manual-base-uri}/current/configuration/neo4j-conf/#neo4j-conf[`neo4j.conf`].
@@ -245,5 +248,5 @@ Users need to log in with their credentials as configured for the Neo4j database
 [NOTE]
 --
 Bloom is supported on Chrome, Firefox and Edge web browsers.
-You may experience glitches or unexpected behaviour if using another web browser.
+You may experience glitches or unexpected behavior if using another web browser.
 --
