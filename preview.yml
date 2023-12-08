@@ -5,10 +5,9 @@ site:
 
 content:
   sources:
-  - url: ../
-    start_path: documentation
+  - url: ./
+    edit_url: '{web_url}/tree/{refname}/{path}'
     branches: HEAD
-    include: documentation/
     exclude:
     - '!**/_includes/*'
     - '!**/readme.adoc'
@@ -44,7 +43,7 @@ asciidoc:
     page-canonical-root: /docs
     page-pagination: true
     page-no-canonical: true
-    page-origin-private: true
+    page-origin-private: false
     page-hide-toc: false
     page-mixpanel: 4bfb2414ab973c741b6f067bf06d5575
     # page-cdn: /static/assets
