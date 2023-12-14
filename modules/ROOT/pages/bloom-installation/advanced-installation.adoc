@@ -1,4 +1,5 @@
 :description: This section describes advanced installation and configuration of Neo4j Bloom.
+:page-aliases: /advanced-installation/
 
 [[advanced-installation]]
 = Advanced installation and configuration
