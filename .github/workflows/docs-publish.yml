@@ -1,0 +1,51 @@
+
+name: "Publish Branch"
+
+on:
+  push:
+    branches:
+    - 'dev'
+  workflow_dispatch:
+  # schedule:
+  #   - cron:  '00 16 * * *'
+
+jobs:
+
+  docs-build:
+    name: Generate HTML
+    uses: neo4j/docs-tools/.github/workflows/reusable-docs-build.yml@dev
+    with:
+      retain-artifacts: 14
+      deploy-id: 0
+    #   package-script: 'publish-verify'
+      cli-options: '--extension ./.docs-tools/extensions/antora/aliases-redirects'
+
+  docs-verify:
+    name: Verify HTML
+    needs: docs-build
+    uses: neo4j/docs-tools/.github/workflows/reusable-docs-verify.yml@dev
+    with:
+      failOnWarnings: true
+
+  trigger-publish:
+    needs: docs-verify
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trigger Publish
+        uses: peter-evans/repository-dispatch@main
+        with:
+          token: ${{ secrets.DISPATCH_TOKEN }}
+          repository: neo4j/docs-publish
+          event-type: docs-bloom
+          client-payload: |-
+            {
+              "org": "${{ github.repository_owner }}", 
+              "repo": "${{ github.event.repository.name }}", 
+              "run_id": "${{ github.run_id }}", 
+              "branch": "${{ github.ref_name }}", 
+              "target": "dev",
+              "docsets": [
+                "bloom-user-guide"
+              ]
+            }
