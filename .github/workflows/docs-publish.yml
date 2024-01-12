@@ -44,7 +44,7 @@ jobs:
               "repo": "${{ github.event.repository.name }}", 
               "run_id": "${{ github.run_id }}", 
               "branch": "${{ github.ref_name }}", 
-              "target": "dev",
+              "publish_env": "dev",
               "docsets": [
                 "bloom-user-guide"
               ]
