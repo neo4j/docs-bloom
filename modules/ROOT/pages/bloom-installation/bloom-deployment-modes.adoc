@@ -62,7 +62,7 @@ For Aura-users, Bloom can be accessed in three ways:
 
 * Through the _Explore_ tab in Workspace
 * Through the Bloom/Explore app from the Aura console
-* Through a URL via a browser as such `\https://bloom.neo4j.io/index.html?connectURL=[AURADBCONNECTINFO]`
+* Through the browser URL `\https://bloom.neo4j.io/index.html?connectURL=[AURADBCONNECTINFO]`
 
 Note that in Neo4j Aura, users are offered to use Neo4j Workspace which is a unified tool that combines the functionality of Neo4j Browser, Neo4j Data Importer, and Bloom.
 In Workspace, the Browser equivalent is called _Query_, the Data Importer equivalent is called _Import_, and the Bloom equivalent is called _Explore_.
