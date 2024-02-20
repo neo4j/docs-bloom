@@ -56,7 +56,7 @@ The deployment option you choose affects the Perspective gallery in different wa
 
 The concept of a user's _home_ database is introduced in Neo4j 4.3.
 A _home_ icon appears in the database dropdown in the Perspective Gallery to indicate the user's home database.
-More details about the home database can be found in the https://neo4j.com/docs/operations-manual/current/manage-databases/introduction/#manage-databases-default[Operations Manual -> The default and home database].
+More details about the home database can be found in the https://neo4j.com/docs/operations-manual/current/database-administration[Operations Manual -> Database administration].
 
 [.shadow]
 image::home-database.png[width=300]
