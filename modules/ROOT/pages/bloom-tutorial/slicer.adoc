@@ -28,7 +28,7 @@ Note that only properties with _numerical_ values are available:
 * `integer`
 * `float`
 
-In case your property is temporal and includes multiple timezones, it is possible to translate them into the same timezone. 
+In case your property is temporal and includes multiple timezones, it is possible to translate them into the same timezone.
 
 The property values of `unitsInStock` are integers and once selected, all available values for this property are displayed on a timeline.
 If you hover over a bar on the timeline, you can see information on how many visible nodes that have each value.
@@ -41,7 +41,7 @@ image::selected-values.png[width=800]
 
 The playback function lets you visualize your selected ranges in real time.
 Start by selecting one or more values by manually expanding or narrowing your selection, then press the play button and watch nodes appear/disappear in the scene based on the value of their `unitsInStock` property.
- 
+
 [.shadow]
 image::playback.png[width=400]
 

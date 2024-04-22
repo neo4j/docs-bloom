@@ -102,7 +102,7 @@ You can select which node property to use from the dropdown menu.
 If no property is selected for the x-axis, Bloom automatically looks for any `point` property and if no such property exists, it looks for any property named _latitude_, then _lat_, and then _x_.
 For the y-axis, the order is: `point`, any property named _longitude_, _long_, and lastly _y_.
 
-If some nodes already in the Scene do not have applicable properties when switching to the coordinate layout, they are placed on one side. 
+If some nodes already in the Scene do not have applicable properties when switching to the coordinate layout, they are placed on one side.
 
 Only properties with _numerical_ values are available, i.e. _not_ `string` properties.
 For `point` properties, both two-dimension Cartesian and geographic (longitude and latitude) points are supported.

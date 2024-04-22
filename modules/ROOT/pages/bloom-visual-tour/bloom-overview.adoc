@@ -10,9 +10,8 @@ image::overview.png[width=800]
 The sidebar contains a set of drawers where you can set up the environment for graph exploration.
 
 * xref::/bloom-visual-tour/perspective-drawer.adoc[*Perspective drawer*] - defines the business context depicted in the scene.
-* *Help & Learn drawer* - various resources to help you learn more.
-* xref::/bloom-visual-tour/settings-drawer.adoc[*Settings drawer*] - provides application settings.
-* *About drawer* - shows notifications and license information.
+* *Help & learn drawer* - various resources to help you learn more.
+* xref::/bloom-visual-tour/settings-drawer.adoc[*Settings drawer*] - provides application settings and license information.
 
 == Scene
 
