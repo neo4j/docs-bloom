@@ -1,6 +1,6 @@
 name: bloom-user-guide
 title: Neo4j Bloom
-version: '2.11'
+version: '2.12'
 start_page: ROOT:index.adoc
 nav:
 - modules/ROOT/content-nav.adoc
