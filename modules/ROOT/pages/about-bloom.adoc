@@ -90,7 +90,7 @@ The Bloom client provides you with the user interface to define Perspectives, se
 You can also inspect property details about the nodes and relationships returned, as well as make edits directly to the underlying graph data, assuming you have the requisite permissions.
 
 The Bloom client can be hosted on a server and accessed via a web browser.
-It is also available in Workspace on Aura as _Explore_, which is powered by Bloom, or as a standalone application at `bloom.neo4j.io` and `explore.neo4j.io`.
+It is also available in Workspace on Aura as _Explore_, which is powered by Bloom, or as a standalone application at `bloom.neo4j.io`.
 
 [[web-server-hosted]]
 ==== Web server hosted
