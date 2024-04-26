@@ -190,11 +190,6 @@ This is an Enterprise feature and requires specific configuration and a (self-ho
 Additionally, you need a compatible SSO provider (local or external) already configured.
 For more information on the configuration, see link:https://neo4j.com/docs/operations-manual/current/authentication-authorization/sso-integration/#auth-sso-parameters[Operations Manual -> OIDC configuration settings^].
 
-[NOTE]
-====
-For deployments other than with self-hosted Neo4j Server v4.4+, SSO can be configured with a separate OAuth plugin which requires engagement from Professional Services.
-See link:https://neo4j.com/professional-services/[^] for more information about Professional Services.
-====
 
 Supported providers at this time include OpenID Connect (OIDC) OAuth 2.0 providers Google, Keycloak, Microsoft Azure AD, and Okta.
 Bloom supports two authorization flows:
@@ -222,23 +217,23 @@ Make sure to avoid duplicate entries in the `neo4j.conf` file.
 Bloom needs to be aware of the identity providers available for use.
 When used with Neo4j v4.4+, this is specified the `neo4j.conf` file, as described above.
 
-Deployments that use an earlier version of Neo4j require a separate OAuth plugin and assistance from Professional Services, as mentioned previously.
-However, in such cases, identity providers can be specified in two ways:
+// Deployments that use an earlier version of Neo4j require a separate OAuth plugin and assistance from Professional Services, as mentioned previously.
+// However, in such cases, identity providers can be specified in two ways:
 
-* Specify a URL parameter `discoveryURL` that specifies a URL to a json file containing the SSO providers.
-Example for Bloom: `\https://<bloom-server-host>:<http-port>?discoveryURL=https://webhost.com/public/discovery.json`
-* Add information to Bloom's `discovery.json` file located in your Bloom installation at the web root directory.
-Keep in mind that the `discovery.json` must be tailored to your SSO solution.
+// * Specify a URL parameter `discoveryURL` that specifies a URL to a json file containing the SSO providers.
+// Example for Bloom: `\https://<bloom-server-host>:<http-port>?discoveryURL=https://webhost.com/public/discovery.json`
+// * Add information to Bloom's `discovery.json` file located in your Bloom installation at the web root directory.
+// Keep in mind that the `discovery.json` must be tailored to your SSO solution.
 
 
-[IMPORTANT]
-====
-Bloom prioritizes in the following order, in case of conflicting data:
+// [IMPORTANT]
+// ====
+// Bloom prioritizes in the following order, in case of conflicting data:
 
-. `discoveryURL`
-. `neo4j.conf`
-. `discovery.json`
-====
+// . `discoveryURL`
+// . `neo4j.conf`
+// . `discovery.json`
+// ====
 
 Deep links also work with SSO authentication, where available.
 

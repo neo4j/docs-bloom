@@ -90,7 +90,7 @@ The Bloom client provides you with the user interface to define Perspectives, se
 You can also inspect property details about the nodes and relationships returned, as well as make edits directly to the underlying graph data, assuming you have the requisite permissions.
 
 The Bloom client can be hosted on a server and accessed via a web browser.
-You can also use it in Neo4j Desktop as a graph app.
+It is also available in Workspace on Aura as _Explore_, which is powered by Bloom, or as a standalone application at `bloom.neo4j.io` and `explore.neo4j.io`.
 
 [[web-server-hosted]]
 ==== Web server hosted
@@ -101,7 +101,7 @@ This option is most convenient if you prefer web-based apps, have restrictions o
 
 ==== Neo4j Desktop hosted
 
-Bloom client is available for free in Neo4j Desktop for local databases (from Bloom 1.3.0 onwards) and does not require installation.
+Bloom client is available for free in Neo4j Desktop for local databases (up to Bloom 2.11.0) and does not require installation.
 This setup may be desirable if you already run Neo4j Desktop, prefer using native apps, and like the convenience of automatic updates for new versions.
 
 
