@@ -21,7 +21,7 @@ You can select from any node labels available in the Perspective or use a blank 
 Further, if you know which relationship you are interested in, but not which node labels it connects, you can select based on the relationship type and use the wildcard option for the node label (the `(any)` node).
 Additionally, you can filter the suggestions by Search phrases, nodes, or relationships.
 
-But, as explained in the following section on xref::/bloom-tutorial/graph-pattern-search.adoc#language-graph-patterns[Near-natural language and graph patterns], you can always type your own query as well.
+// But, as explained in the following section on xref::/bloom-tutorial/graph-pattern-search.adoc#language-graph-patterns[Near-natural language and graph patterns], you can always type your own query as well.
 
 [.shadow]
 image::proactive-blank-input.png[width=400]
@@ -63,39 +63,40 @@ Bloom also attempts to hide pattern permutations from the suggestions list, if t
 This may not be applicable in all situations.
 It is possible for database performance issues or network latency between the user’s machine and the Neo4j server to cause delays in showing search suggestions.
 
-[[language-graph-patterns]]
-== Near-natural language and graph patterns
+//As of 2.12, this doesn't work
+// [[language-graph-patterns]]
+// == Near-natural language and graph patterns
 
-Assume that you want to find `Products` that are connected to `Orders` by any relationship.
-Using a near-natural language search expression, you can type in the search in several different ways.
+// Assume that you want to find `Products` that are connected to `Orders` by any relationship.
+// Using a near-natural language search expression, you can type in the search in several different ways.
 
-[NOTE]
-====
-To use the full-text search, a full-text index needs to be present in the database.
-====
+// [NOTE]
+// ====
+// To use the full-text search, a full-text index needs to be present in the database.
+// ====
 
-For example, if you type `Product Order` in the search bar, you get the following suggestion:
+// For example, if you type `Product Order` in the search bar, you get the following suggestion:
 
-[.shadow]
-image::product-order.png[width=400]
+// [.shadow]
+// image::product-order.png[width=400]
 
-This is straightforward, a `Product` node connected via the wildcard `(any)` relationship to an `Order` node.
-You can execute or further refine by adding more relationships to the pattern, or by defining conditions based on the properties of the `Order` nodes.
+// This is straightforward, a `Product` node connected via the wildcard `(any)` relationship to an `Order` node.
+// You can execute or further refine by adding more relationships to the pattern, or by defining conditions based on the properties of the `Order` nodes.
 
-But if you instead type `order with product` in the search bar and run it as a full-text search, Bloom returns seven nodes:
+// But if you instead type `order with product` in the search bar and run it as a full-text search, Bloom returns seven nodes:
 
-[.shadow]
-image::full-text-search.png[width=800]
+// [.shadow]
+// image::full-text-search.png[width=800]
 
-If you inspect these nodes individually, you can see that all of them has either `order` and/or `product` among their property values.
-A full-text search requires at least three characters in the search bar.
-Bloom matches them exactly and if you enter multiple words, the returned elements contain at least one of them.
+// If you inspect these nodes individually, you can see that all of them has either `order` and/or `product` among their property values.
+// A full-text search requires at least three characters in the search bar.
+// Bloom matches them exactly and if you enter multiple words, the returned elements contain at least one of them.
 
-If the results of a full-text search exceeds the node query limit, Bloom presents you with a pop-up which lets you select which elements to add to the Scene instead of blocking all results.
-Typing `order of a product` in the search bar yields many matches and if your limit is set below 1000, it results in the following:
+// If the results of a full-text search exceeds the node query limit, Bloom presents you with a pop-up which lets you select which elements to add to the Scene instead of blocking all results.
+// Typing `order of a product` in the search bar yields many matches and if your limit is set below 1000, it results in the following:
 
-[.shadow]
-image::search-pop-up.png[width=600]
+// [.shadow]
+// image::search-pop-up.png[width=600]
 
 
 == Case sensitivity of input
