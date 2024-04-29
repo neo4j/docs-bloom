@@ -18,7 +18,7 @@ For scenarios where you want to host Bloom client on a web server separate from 
 The Bloom plugin is still required to be installed on the Neo4j database server, see xref:bloom-installation/installation-activation.adoc#installing-server-plugin[Installing server plugin] for more information.
 Follow the steps below to set up the Bloom client:
 
-. Download the Bloom server package https://neo4j.com/download-center/#bloom[here].
+. Download the Bloom server package https://neo4j.com/deployment-center/?bloom[here].
 . Unzip the downloaded Bloom server package.
 Look for a web asset bundle in the form of `neo4j-bloom-<version>-assets.zip`.
 . Unzip and setup the files in the bundle to be served from your web server.

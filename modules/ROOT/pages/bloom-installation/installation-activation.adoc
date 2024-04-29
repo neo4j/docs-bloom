@@ -25,14 +25,14 @@ For more information on licensing terms, refer to the Neo4j Desktop license agre
 ====
 Bloom is by default available to all users of the Neo4j database.
 This can be managed through role-based access control (RBAC) in Neo4j.
-See step 5 *Setup users/roles in the database* further on, also link:https://neo4j.com/docs/cypher-manual/current/access-control/[Cypher Manual -> Access control] and link:https://neo4j.com/docs/operations-manual/current/authentication-authorization/access-control/[Operations Manual -> Fine-grained access control] for more information on users and roles.
+See step 5 *Setup users/roles in the database* further on, see also link:https://neo4j.com/docs/operations-manual/current/authentication-authorization/[Operations Manual -> Authentication and authorization] for more information on users and roles.
 ====
 
 [[installation-bloom-server]]
 == Bloom server
 
 The Bloom server component installs as a Neo4j database plugin.
-Before you can begin, download the Bloom server package https://neo4j.com/download-center/#bloom[here] and make sure you have a valid activation key for the Bloom server.
+Before you can begin, download the Bloom server package https://neo4j.com/deployment-center/?bloom[here] and make sure you have a valid activation key for the Bloom server.
 The server activation key can be obtained from your Neo4j representative.
 
 
