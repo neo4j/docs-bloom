@@ -17,10 +17,13 @@ image::scene-action-context.png[width=500]
 In the following example, using the Northwind graph, a Scene action, _Discontinued products_, is created (and saved) based on the selected nodes in the scene.
 This Scene action is available from the context menu when node(s) are selected and displays products that have been discontinued from the selected suppliers.
 
+[.shadow]
+image::scene-action.png[width=400]
+
 It is possible to make the Scene action available for only some categories, you control this in the _Action Availability_ dropdown menu.
 
 [.shadow]
-image::scene-action.png[width=400]
+image::action-availability.png[width=300]
 
 If a relationship is selected instead of nodes, the _Discontinued products_ Scene action is not available, which is a result of the `WHERE id(n) in $nodes` on the second line of the Cypher query.
 
