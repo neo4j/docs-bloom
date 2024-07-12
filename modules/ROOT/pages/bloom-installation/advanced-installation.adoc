@@ -191,17 +191,17 @@ Additionally, you need a compatible SSO provider (local or external) already con
 For more information on the configuration, see link:https://neo4j.com/docs/operations-manual/current/authentication-authorization/sso-integration/#auth-sso-parameters[Operations Manual -> OIDC configuration settings^].
 
 
-Supported providers at this time include OpenID Connect (OIDC) OAuth 2.0 providers Google, Keycloak, Microsoft Azure AD, and Okta.
-Bloom supports two authorization flows:
+Supported providers at this time include OpenID Connect (OIDC) OAuth 2.0 providers:
 
-* Authorization Code flow with PKCE
-* Implicit flow
+* Google
+* Keycloak
+* Microsoft Azure AD
+* Okta
 
-[IMPORTANT]
-====
-It is strongly advised to use PKCE to ensure security.
+Bloom supports authorization code flow with PKCE.
+
 Further information about OpenID Connect and OAuth can be found at link:https://openid.net/connect/[https://openid.net/connect/^].
-====
+
 
 [IMPORTANT]
 ====
