@@ -1,10 +1,10 @@
 name: bloom-user-guide
 title: Neo4j Bloom
-version: '2.13'
+version: '2.14'
 start_page: ROOT:index.adoc
 nav:
 - modules/ROOT/content-nav.adoc
 asciidoc:
   attributes:
     neo4j-buildnumber: '5.13'
-    docs-version: '2.13'
+    docs-version: '2.14'
