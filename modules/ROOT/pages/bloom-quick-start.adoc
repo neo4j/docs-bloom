@@ -40,9 +40,10 @@ Once loaded, try searching for:
 
 
 [NOTE]
+====
 For faster search performance, it is highly recommended to set up indexes in the Neo4j database for all properties that should be searchable in Bloom.
-See https://neo4j.com/docs/operations-manual/4.0/performance/index-configuration/[Operations manual -> Index configuration]
-{nbsp} +
+See link:{neo4j-docs-base-uri}cypher-manual/current/indexes/[Cypher Manual -> Indexes]
+====
 
 == Interact with the visualization
 
