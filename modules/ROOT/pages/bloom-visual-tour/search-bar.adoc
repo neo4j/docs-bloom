@@ -27,7 +27,7 @@ You can press <TAB> or click on a suggestion in the list to select it, or scroll
 
 == Sample Search phrase
 
-When Bloom autogenerates a Perspective (see xref::/bloom-perspectives/perspective-generation[Creating a Perspective] for more information) or when you create your own (non-empty) Perspective, Bloom provides a sample Search phrase to help you see the data in your graph.
+When Bloom autogenerates a Perspective (see xref::/bloom-perspectives/perspective-creation.adoc[Creating a Perspective] for more information) or when you create your own (non-empty) Perspective, Bloom provides a sample Search phrase to help you see the data in your graph.
 The Search phrase is called _Show me a graph_ and is available in the search bar.
 It returns a sample of your data.
 
