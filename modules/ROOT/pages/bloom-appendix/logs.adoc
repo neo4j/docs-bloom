@@ -1,0 +1,130 @@
+:description: This section describes how to access logs for Bloom.
+= Logs
+
+[NOTE]
+====
+Bloom-specific logs are only available when using the standalone application, i.e. **not** Explore.
+====
+
+Logs can help you understand what is happening within Bloom, both for performance and troubleshooting purposes.
+
+Bloom's logs can be accessed in two ways, either from your web browser's developer console when running in Chrome, Firefox, or Edge, or via the **Experimental Features** drawer (provided it has been activated in the **Settings** drawer).
+
+The following logs are available:
+
+* Application logs
+* Visualization logs
+* Performance logs
+* SSO logs
+* Driver logs
+
+If Bloom is running in a web browser, access the developer console (see your browser's documentation if you need assistance locating) in the tab running Bloom.
+The following table lists the commands available to configure and access Bloom's error logs:
+
+[cols="<a,<a", options=header]
+|===
+| Command
+| Explanation
+
+| `bloom_help`
+|  See **all** logging options
+
+| `bloom_le()`
+| Enable all logging
+
+| `bloom_ls()`
+| Disable all logging
+
+| `bloom_ls(level, loggerName)`
+| Set level for specific logger
+
+| `bloom_lst(loggerName)`
+| Set level to `trace` for specific logger
+
+| `bloom_lsd(loggerName)`
+| Set level to `debug` for specific logger
+
+| `bloom_lsi(loggerName)`
+| Set level to `info` for specific logger
+
+| `bloom_lsw(loggerName)`
+| Set level to `warn` for specific logger
+
+| `bloom_lse(loggerName)`
+| Set level to `error` for specific logger
+
+| `bloom_lss(loggerName)`
+| Set level to `silent` for specific logger
+
+| `bloom_dr()`
+| Download application logs
+
+| `bloom_dv()`
+| Download visualization logs
+
+| `bloom_dp()`
+| Download performance logs
+
+| `bloom_ds()`
+| Download SSO logs
+
+| `bloom_dd()`
+| Download driver logs
+
+| `bloom_da()`
+| Download **all** log files in a _.zip_ file
+
+| `bloom_pr()`
+| Print application logs
+
+| `bloom_pv()`
+| Print visualization logs
+
+| `bloom_pp()`
+| Print performance logs
+
+| `bloom_ps()`
+| Print SSO logs
+
+| `bloom_pd()`
+| Print driver logs
+|===
+
+
+The default `loggerName` is always `ROOT`, which indicates the root applicaiton logs.
+Other available loggers include:
+
+* `NEVADA` -- Logs related to Bloom's visualization system
+* `PERF` -- Logs related to performance
+* `DRIVER` -- Logs related to the driver connecting Bloom to Neo4j
+* `SSO` -- Logs related to Bloom's SSO configuration
+
+The available trace levels, listed by levels of verbosity from high to low, are:
+
+* *trace*
+* *debug*
+* *info*
+* *warn*
+* *error*
+* *silent*
+
+Additionally, you can set the log levels of individual or all loggers via URL parameters.
+
+* The parameter `LOGS_LEVEL=<level>` sets the logging level to level for all loggers
+* The parameter `<LOGGER>_LEVEL=<level>` sets the logging level to level for the logger `<LOGGER>`
+* For Neo4j Desktop users, these parameters can be used along with `neo4j://graphapps/neo4j-bloom/` to adjust log settings in Bloom.
+
+For example:
+
+`http://localhost:8085?ROOT_LEVEL=warn` sets the logging level `warn` for the logger `ROOT` (the application logs)
+
+`http://localhost:8085?LOGS_LEVEL=debug` sets the logging level `debug` for the _all_ loggers
+
+`neo4j://graphapps/neo4j-bloom/?LOGS_LEVEL=debug` sets the logging level `debug` for the _all_ loggers when launching Bloom via Neo4j Desktop
+
+`http://localhost:8085?LOGS_LEVEL=error&DRIVER_LEVEL=debug&NEVADA_LEVEL=info` sets the logging level `error` for _all_ loggers yet for the `DRIVER` logger the level is set to `debug` and for the `NEVADA` logger the level is set to `info`
+
+
+If you want to *download* the logs, use one of the commands outlined above, *or* the *Download All Logs* option in the *Experimental Features* drawer (as mentioned previously, the *Experimental features* toggle in the *Settings* drawer needs to be enabled for this).
+
+
