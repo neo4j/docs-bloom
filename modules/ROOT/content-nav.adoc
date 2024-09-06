@@ -33,3 +33,4 @@
 ** xref:bloom-tutorial/deep-links.adoc[]
 * xref:bloom-appendix/bloom-appendix.adoc[Appendix]
 ** xref:bloom-appendix/bloom-appendix.adoc#default-actions[Default actions and shortcuts]
+//** xref:bloom-appendix/logs.adoc[] Logs are currentlu
