@@ -116,6 +116,7 @@ MATCH p = ()-[r:CONNECTED_TO]->() RETURN p
 *  The Cypher query in the Search phrase can be sent as either a READ or a WRITE transaction to the database (provided you have appropriate permissions).
 In order to allow a WRITE transaction, you need to first enable this in the xref:bloom-visual-tour/settings-drawer.adoc[**Settings**] drawer.
 Bloom can detect certain WRITE queries based on a number of keywords, and if your query doesn't contain any of the keywords, you need to check the _Write transaction_ box in order for the transaction to be sent as a WRITE.
+If the _Write transaction_ box is checked, the query is **always** sent as a WRITE transaction.
 
 [.shadow]
 image::write-transaction.png[width=400]
