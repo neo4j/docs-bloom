@@ -25,6 +25,8 @@ The following can be controlled from this drawer:
 * *Graph layout compatibility mode* - can solve compatibility issues between GPU and WebGL.
 See xref::/bloom-installation/bloom-prerequisites.adoc#compatibility-mode[Compatibility mode] for more information.
 * *Write transactions* - disabled by default.
+When enabled, transactions are sent as WRITE transactions only if they contain certain keywords that warrants a WRITE transaction.
+See xref:bloom-tutorial/scene-actions.adoc#write-transaction-action[Scene actions] and xref:bloom-tutorial/search-phrases-advanced.adoc#search-phrases-caveats[Search phrases caveats] for more details.
 * *Perspective auto-sync* - automatically adds new categories to Perspectives when new labels are added to the database.
 Enabled by default when using Bloom without the plugin and disabled when used with the plugin.
 See xref::/bloom-perspectives/refresh-perspectives.adoc#bloom-refresh-perspectives[Refresh Perspectives] for more information.
