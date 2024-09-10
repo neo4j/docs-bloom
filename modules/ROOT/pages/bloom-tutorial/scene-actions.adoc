@@ -7,6 +7,15 @@ _Scene actions_ are parameterized Cypher queries, much like xref:/bloom-visual-t
 The difference is that in a Scene action, the parameters can be the selected elements in your current selection instead of all available and matching elements in your graph.
 Also, whereas Scene actions are defined in the Perspective drawer under _Saved Cypher_, they are invoked from the context menu.
 
+[[write-transaction-action]]
+[IMPORTANT]
+====
+A Scene action can be sent as either a READ or a WRITE transaction to the database (provided you have appropriate permissions).
+In order to send as a WRITE transaction, you need to first enable this in the xref:bloom-visual-tour/settings-drawer.adoc[**Settings**] drawer.
+Bloom can detect certain WRITE queries based on a number of keywords, and if your query doesn't contain any of the keywords, you need to check the _Write transaction_ box in order for the transaction to be sent as a WRITE.
+If the _Write transaction_ box is checked, the query is **always** sent as a WRITE transaction.
+====
+
 The Scene actions are listed in the order they were created.
 Bloom lets you reorder them any way you like by dragging and dropping them as you please in the Perspective drawer.
 The order of Scene actions in the Perspective drawer is also reflected from the context menu.
