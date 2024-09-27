@@ -29,12 +29,20 @@ This Scene action is available from the context menu when node(s) are selected a
 [.shadow]
 image::scene-action.png[width=400]
 
+[NOTE]
+====
+The Cypher function `id` is deprecated in Neo4j 5 and will be removed.
+It is replaced by `elementId`.
+Existing Scene actions containing `id` still works with Neo4j 5, but any new actions should use `elementId`.
+However, if you use Neo4j 4.x, you **must** use `id`.
+====
+
 It is possible to make the Scene action available for only some categories, you control this in the _Action Availability_ dropdown menu.
 
 [.shadow]
 image::action-availability.png[width=300]
 
-If a relationship is selected instead of nodes, the _Discontinued products_ Scene action is not available, which is a result of the `WHERE id(n) in $nodes` on the second line of the Cypher query.
+If a relationship is selected instead of nodes, the _Discontinued products_ Scene action is not available, which is a result of the `WHERE elementId(n) in $nodes` on the second line of the Cypher query.
 
 [.shadow]
 image::scene-action-relationship.png[width=400]
