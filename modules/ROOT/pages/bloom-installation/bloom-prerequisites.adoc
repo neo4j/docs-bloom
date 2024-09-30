@@ -51,7 +51,6 @@ To obtain activation keys for the Bloom client or server components, ask your fr
 [[version-compatibility]]
 == Version compatibility
 
-* Neo4j Enterprise Edition database versions supported: 5.x+, 4.4.0+, 4.3.0+.
 * Chrome, Firefox, and Edge (based on Chromium) browsers: Latest version recommended.
 * The Fabric capability of Neo4j 4.x is currently not supported.
 * Bloom is compatible with currently supported version of the Neo4j Graph Data Science library.
@@ -61,6 +60,6 @@ A supported version of the GDS plugin must be installed on the DBMS in order to 
 For more information on supported versions of Neo4j, see link:https://support.neo4j.com/hc/en-us/articles/115013134648-Neo4j-Supported-Versions[Neo4j Supported Versions].
 
 [NOTE]
---
+====
 Keep in mind that if the Bloom client is used with the server component, both client and server should be the same exact version.
---
+====
