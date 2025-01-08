@@ -9,7 +9,7 @@ Some of the commonly expected ones are:
 * Zoom in and out using your mouse or touchpad scroll functions, or use the buttons at the bottom right of the canvas.
 The size of the text on nodes is dynamic in relation to the size of the node.
 * Hover over a node or a relationship to see its label and selected properties.
-or nodes, but _not_ relationships, you can control what properties to display.
+For nodes, but _not_ relationships, you can control what properties to display.
 This is done in two steps, first you select which properties should be available for display from the Perspective drawer.
 Click on a label from the list of Categories and check/uncheck Exclude from the available properties.
 Next, in the Legend panel, select the colored circle to open the styling menu and then find the *Text* option under *Default*.
