@@ -22,7 +22,7 @@ See xref::/bloom-perspectives/database-scans.adoc[Database scans] for more infor
 Graph exploration begins by searching for interesting parts of the graph.
 
 [.shadow]
-image::bloom-explore-overview.png[width=800]
+image::bloom-overview.png[width=800]
 {nbsp} +
 
 == Start by searching
