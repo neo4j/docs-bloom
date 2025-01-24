@@ -20,7 +20,7 @@ The following can be controlled from this drawer:
 // ====
 // This setting is not available with the Bloom server plugin.
 //====
-* *Search resukts highlight* - automatically selects new nodes on the scene.
+* *Search results highlight* - automatically selects new nodes on the scene.
 * *Property shown on hover* - enables tooltips that shows the properties of a node when you hover over it.
 * *Graph layout compatibility mode* - can solve compatibility issues between GPU and WebGL.
 See xref::/bloom-installation/bloom-prerequisites.adoc#compatibility-mode[Compatibility mode] for more information.
