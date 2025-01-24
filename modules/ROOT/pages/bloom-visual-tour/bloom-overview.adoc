@@ -6,6 +6,8 @@
 [.shadow]
 image::bloom-overview.png[width=800]
 
+Note that items marked with * are only available with the Bloom plugin.
+
 == Sidebar
 The sidebar contains a set of drawers where you can set up the environment for graph exploration.
 
