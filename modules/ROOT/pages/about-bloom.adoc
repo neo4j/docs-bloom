@@ -103,6 +103,7 @@ This option is most convenient if you prefer web-based apps, have restrictions o
 
 Bloom client is available for free in Neo4j Desktop for local databases (up to Bloom 2.11.0) and does not require installation.
 This setup may be desirable if you already run Neo4j Desktop, prefer using native apps, and like the convenience of automatic updates for new versions.
+Keep in mind though, that with Desktop you cannot use any version of Bloom later than 2.11.0.
 
 
 {nbsp} +
@@ -121,8 +122,6 @@ By default, the Bloom server will store Perspective data in the Neo4j database, 
 Perspectives are stored as nodes with specific properties to capture their definition and other metadata.
 This data is stored alongside your business data in the property graph, although it is separated using Bloom-specific labels added to the Perspective nodes.
 If applications other than Bloom have access to the same property graph, such Perspective information can be accessible to other applications depending on the queries they run on the property graph.
-
-If you prefer not to mix Perspective information with your other business data in the graph, the Bloom server can be configured to store Perspective information in a separate Neo4j instance.
 
 ==== Security
 

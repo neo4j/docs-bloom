@@ -17,10 +17,12 @@ Whenever you make any changes to a Scene, i.e. any changes to filters, the graph
 If you switch Scene, the Scene you left is the same when you return to it.
 
 Style settings for a Scene is determined by the Perspective by default.
-If the style settings in your Scene deviate from this default, you can toggle between the Perspective style and the Scene style.
+If you change the styling, the changes only affect the current Scene and any new Scenes you create follow the Perspective styling.
+If you have write permission on the Perspective, you can choose to save the styling to the Perspective.
+This affects any new Scenes created, but not already existing Scenes.
 
 [.shadow]
-image::style-toggle.png[width=300]
+image::styling-perspective.png[width=300]
 
 [WARNING]
 ====
