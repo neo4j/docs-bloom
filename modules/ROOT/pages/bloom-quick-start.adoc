@@ -57,5 +57,5 @@ With a currently displayed graph visualization you can:
 
 [TIP]
 --
-Watch the https://www.youtube.com/playlist?list=PL9Hl4pk2FsvWqH11v_WXVNIgb4iHjqHgs[Bloom video series] on product features as a learning tool while you get started with the product.
+You can watch the link:https://www.youtube.com/playlist?list=PL9Hl4pk2FsvWyvM-eLrEi6J0nYF69j2Bu[Knowledge Graph Visualization Tools and Techniques videos] as a learning tool while you get started with the product.
 --
