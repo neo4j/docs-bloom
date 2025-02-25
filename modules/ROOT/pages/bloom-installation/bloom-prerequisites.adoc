@@ -45,7 +45,7 @@ image::compatibility-mode.png[width=400,align="center"]
 
 [NOTE]
 --
-You obtain activation keys for the Bloom client or server components from your Neo4j representative.
+You obtain activation keys for the Bloom Enterprise plugin from your Neo4j representative.
 --
 
 [[version-compatibility]]

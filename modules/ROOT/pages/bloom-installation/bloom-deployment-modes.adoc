@@ -66,4 +66,4 @@ For Aura-users, Bloom can be accessed in the following ways:
 The Neo4j Aura console is a fully automated graph platform offered as a cloud service.
 It is a unified tool that combines the functionality of Neo4j Browser, Neo4j Data Importer, Bloom, and various other functionalities from the Neo4j product catalog.
 In the Aura console, the Browser equivalent is called _Query_, the Data Importer equivalent is called _Import_, and the Bloom equivalent is called _Explore_.
-_Explore_ in Aura offers essentially the same features as Bloom Basic.
+_Explore_ in Aura offers essentially the same features as Bloom.
