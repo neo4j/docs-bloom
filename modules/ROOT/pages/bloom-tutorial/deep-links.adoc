@@ -68,6 +68,12 @@ Remember that the parameters should be URL encoded if they contain spaces or spe
 
 == Desktop-hosted Bloom
 
+[NOTE]
+====
+Deep links are supported for Neo4j Desktop version 1.5 and 1.6 *only*.
+====
+
+
 When you want to link to Bloom and open it in Neo4j Desktop, you need to construct the link for Desktop-hosted Bloom.
 The link format is as follows:
 
@@ -98,27 +104,27 @@ The link format for Explore in the Aura console is as follows:
 
 [source, html, indent=0]
 ----
-https://console.neo4j.io/workspace/explore[?<parameter>][&<parameter>]
+https://console-preview.neo4j.io/tools/explore[?<parameter>][&<parameter>]
 ----
 
 In the example above, the link would be constructed as follows (if you want the link to run the query):
 [source, html, indent=0]
 ----
-https://console.neo4j.io/console/explore?search=employee%203115112&perspective=HRM%20Perspective&run=true
+https://console-preview.neo4j.io/tools/explore?search=employee%203115112&perspective=HRM%20Perspective&run=true
 ----
 
 If you want to link directly to the Bloom/Explore app in the console, the link format is as follows:
 
 [source, html, indent=0]
 ----
-https://bloom.neo4j.io/index.html?connectURL=[AURADBCONNECTINFO][&<parameter>][&<parameter>]
+https://bloom.neo4j.io/index.html[?connectURL=AURADBCONNECTINFO][&<parameter>]
 ----
 
 In the same example search as above, the link would be constructed as follows (if you want the link to run the query):
 
 [source, html, indent=0]
 ----
-https://bloom.neo4j.io/index.html?connectURL=neo4j%2Bs%3A%2F%2F93918bf2.databases.neo4j.io&_ga=2.79292244.1965170597.1699952358-1070484742.1697457115&search=employee%203115112&perspective=HRM%20Perspective&run=true
+https://bloom.neo4j.io/index.html?connectURL=neo4j%2Bs%3A%2F%2F93918bf2.databases.neo4j.io&search=employee%203115112&perspective=HRM%20Perspective&run=true
 ----
 
 Remember that all parameters should be URL encoded if they contain spaces or other special characters.
