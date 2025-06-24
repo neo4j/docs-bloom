@@ -30,24 +30,31 @@ Scenes rely on node and relationship IDs in Neo4j.
 Changes to this underlying data can cause data in saved Scenes to appear incorrectly if IDs are reused by the database.
 ====
 
+== Sharing options
+
 Bloom allows you to share your insights.
 When you find an interesting Scene, you have different options to share it, depending on who you want to share it with.
 The options are accessed with the _Export_ button in the top right corner of your Scene.
 
 [.shadow]
-image::share-options.png[width=300]
+image::share-options.png[width=400]
+
+=== Screenshot
 
 If you want to share your Scene with someone without access to the database, you can take a screenshot to export.
-This lets you to share your insights without allowing outside interaction with the elements in your Scene.
+This lets you to share your insights *without allowing outside interaction* with the elements in your Scene.
+The screenshot is captured and saved to your _Downloads_ folder.
 
-[.shadow]
-image::export-options.png[width=600]
+=== CSV files
 
 The other option is to extract your results as CSV files.
 This can be done in different ways.
-You can export _all_ the data in your Scene in one single csv file, `graph-export.csv`, by leaving that box checked.
+You can export _all_ the data in your Scene in one single CSV file, `graph-export.csv`, by leaving that box checked.
 This option returns _all_ the data for every relationship, i.e. start node info, end node info, as well as relationship info.
-Additionally, you can add separate csv files for nodes and relationships, respectively, by leaving those boxes checked as well.
+Additionally, you can add separate CSV files for nodes and relationships, respectively, by leaving those boxes checked as well.
+
+[.shadow]
+image::export-options.png[width=600]
 
 If you want to refine the results in the selected files (`graph-export.csv`, `node-export.csv`, and/or `relationship-export.csv`) you can enable/disable both node labels and relationship types to be included or excluded.
 You can select which properties of both nodes and relationships to include/exclude as well.
@@ -60,21 +67,38 @@ If the Scene only contains nodes and no relationships, both the `graph-export.cs
 
 Exporting data in a Scene as CSV files allows you to use your results in applications other than Bloom.
 
-The third option is to share your Scene with other users of the same database.
+=== Share Scene
 
-When sharing a Scene, you can either select which roles you would like to share it with or use the _Copy link_ button.
+The third option is to share your Scene with other users of the same database.
+This allows the recipient to see what you see, but it *does not* allow them to make any changes.
+They can, however, duplicate the Scene and then alter it.
+If you want to share a starting point that allows interaction, consider using a xref:bloom-tutorial/deep-links.adoc[deep link] instead.
+
+In addition to the *Export* button, you can also share a Scene from the Scene card.
+
+[.shadow]
+image::scene-sharing-option.png[width=400]
+
+To share a Scene, you select which roles you wish to share it with.
+When a user with the selected role logs in to Bloom next time, they will see the Scene in their Scene panel under *Shared with me*.
+Alternatively, you can also use the *Copy link* button which creates a URL and copies it to your clipboard.
+You can send the link directly to any user with the specified role.
+The recipient pastes the link into their browser.
+They need to authenticate but will then be taken directly to the Scene in the applicable Perspective.
+
+[.shadow]
+image::scene-sharing.png[width=400]
+
 The roles available depends on which roles are available for sharing the current Perspective and can be managed in the Perspective drawer.
-See xref::/bloom-perspectives/perspective-storage.adoc[] in the Perspectives-chapter for more information on roles and sharing.
+See xref::/bloom-perspectives/perspective-storage.adoc[] for more information on roles and sharing.
 For more information on roles and their access, see link:https://neo4j.com/docs/operations-manual/current/authentication-authorization/[Operations Manual -> Authentication and authorization].
 
-Any Scenes shared with you can be found in the _Scene_ panel, expanded from the _Scene_ button, as described earlier in this section.
+Any Scenes shared with you can be found in the *Scene* panel, expanded from the *Scene* button, as described earlier in this section.
 
 When you create a Scene, you are its owner and only the owner of a Scene can make any changes to it.
 If a Scene has been shared with you, you can make a copy of it and save your own changes.
 Note that you need to have write access to the database to be able to make any changes at all.
 
-[.shadow]
-image::scene-sharing.png[width=400]
 
 [NOTE]
 ====
