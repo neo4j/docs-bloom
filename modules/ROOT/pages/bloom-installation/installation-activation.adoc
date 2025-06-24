@@ -6,9 +6,14 @@
 [[installation-desktop-hosted]]
 == Neo4j Desktop hosted Bloom client
 
-Neo4j Bloom client comes pre-packaged within Neo4j Desktop.
-The Bloom client is enabled and ready to use in Desktop.
-You can find and directly run the Bloom app from the “Applications” sidebar drawer in Desktop.
+Neo4j Bloom client comes pre-packaged within all versions of Neo4j Desktop.
+However, in Desktop 2.0, Bloom is available as *Explore*, and in earlier versions, Bloom is available as a graph app.
+The Bloom client is enabled and ready to use in all versions of Desktop.
+
+In Desktop 2.0, you find *Explore* in the *Tools* section on the sidebar.
+See link:https://neo4j.com/docs/desktop/2.0/operations/connections/#_connecting_tools[Connecting tools] for more information on how to use Explore in Desktop 2.0.
+
+In earlier versions, you can find and directly run the Bloom app from the “Applications” sidebar drawer in Desktop.
 In case you are not seeing the Bloom app there, make sure `offline mode` is disabled and restart your Desktop.
 Your Desktop will automatically search for the latest version of Bloom and install it if it is either missing or an older version.
 
@@ -18,7 +23,7 @@ The Bloom client's visualization and exploration features are available with any
 Access to a remote Neo4j database and features used for collaboration, such as persistent storage and security, require the <<_bloom_server, Bloom server>> component.
 ====
 
-For more information on licensing terms, refer to the Neo4j Desktop license agreement from the “About” section of Neo4j Desktop.
+For more information on licensing terms, refer to the Neo4j Desktop license agreement from the *About* section of Neo4j Desktop.
 
 [NOTE]
 ====
