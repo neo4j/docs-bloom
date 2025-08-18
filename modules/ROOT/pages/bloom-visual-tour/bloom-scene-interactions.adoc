@@ -76,6 +76,14 @@ If you set a limit in the context menu, this overrides any Node query limit set 
 [.shadow]
 image::advanced-expansion.png[width=500]
 
+== Group nodes
+
+Sometimes you may be interested in how a *group* of nodes relate to others, rather than how each individual node fits in.
+Bloom offers an option to group selected nodes and have them represented as one visually distinct larger node.
+Any relationships between the grouped nodes other nodes are displayed individually.
+Once two or more nodes are selected, the context menu includes an option to group them.
+
+
 == Shortest path
 
 A powerful feature of Neo4j graphs is to see how two entities may be connected without knowing the exact path of relationships between them.
