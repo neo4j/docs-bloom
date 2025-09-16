@@ -1,9 +1,16 @@
-:description: This section describes Scene interactions in Neo4j Bloom.
-
 [[bloom-scene-interactions]]
 = Scene interactions
+:description: This section describes Scene interactions in Neo4j Bloom.
 
-Several interactions are available from the canvas to help you explore your graph visualization.
+When you first open a new Perspective and have no data visualized in your scene, you are greeted with two options to get started; *Show a graph snippet* or *Search the graph*.
+
+[.shadow]
+image::empty-state.jpg[width=600]
+
+The first option returns a sample of your data and can help you get started with visualizing your database.
+The second option takes you directly to the xref:bloom-visual-tour/search-bar.adoc[search bar] to start retrieving specific elements from your data.
+
+Once you have data in your scene, several interactions are readily available to help you explore your graph visualization.
 Some of the commonly expected ones are:
 
 * Zoom in and out using your mouse or touchpad scroll functions, or use the buttons at the bottom right of the canvas.
@@ -76,13 +83,23 @@ If you set a limit in the context menu, this overrides any Node query limit set 
 [.shadow]
 image::advanced-expansion.png[width=500]
 
-== Group nodes
+== Group nodes and relationships
 
 Sometimes you may be interested in how a *group* of nodes relate to others, rather than how each individual node fits in.
 Bloom offers an option to group selected nodes and have them represented as one visually distinct larger node.
 Any relationships between the grouped nodes other nodes are displayed individually.
 Once two or more nodes are selected, the context menu includes an option to group them.
 
+[.shadow]
+image::node-rel-group.png[width=400]
+
+Similarly to how you group nodes, you can group relationships should you be more interested in that nodes *are* related and less in *how* they are.
+From the context menu available with a right-click from anywhere on the scene, without selecting any elements, you can group relationships provided that there exist two or more relationships between the same nodes.
+Once grouped, you can ungroup from the same menu.
+Note that both grouping and ungrouping relationships affect *all* applicable relationships present.
+Grouped relationships are represented with an arrow and a number that indicates how many relationships the group consists of.
+Double-click the relationship group to inspect it and display the relationship types present in the group.
+Alternatively, you can use the button in the legend panel to group/ungroup relationships present in the scene.
 
 == Shortest path
 

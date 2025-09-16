@@ -24,16 +24,6 @@ image::search-bar-7.png[width=500]
 You can press <TAB> or click on a suggestion in the list to select it, or scroll to the suggestion and press ENTER to run it.
 ====
 
-
-== Sample Search phrase
-
-When Bloom autogenerates a Perspective (see xref::/bloom-perspectives/perspective-creation.adoc[Creating a Perspective] for more information) or when you create your own (non-empty) Perspective, Bloom provides a sample Search phrase to help you see the data in your graph.
-The Search phrase is called _Show me a graph_ and is available in the search bar.
-It returns a sample of your data.
-
-[.shadow]
-image::show-me-a-graph.png[width=500]
-
 == Graph pattern
 
 Graph patterns are a relaxed, near-natural language grammar based on a vocabulary drawn from node labels, relationship types and property keys and indexed property values, enriched by categories or other configuration as defined in the applied Perspective (see xref::/bloom-perspectives/bloom-perspectives.adoc[Perspectives] for more detail).
