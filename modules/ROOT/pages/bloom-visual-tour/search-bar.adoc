@@ -24,16 +24,6 @@ image::search-bar-7.png[width=500]
 You can press <TAB> or click on a suggestion in the list to select it, or scroll to the suggestion and press ENTER to run it.
 ====
 
-
-== Sample Search phrase
-
-When Bloom autogenerates a Perspective (see xref::/bloom-perspectives/perspective-creation.adoc[Creating a Perspective] for more information) or when you create your own (non-empty) Perspective, Bloom provides a sample Search phrase to help you see the data in your graph.
-The Search phrase is called _Show me a graph_ and is available in the search bar.
-It returns a sample of your data.
-
-[.shadow]
-image::show-me-a-graph.png[width=500]
-
 == Graph pattern
 
 Graph patterns are a relaxed, near-natural language grammar based on a vocabulary drawn from node labels, relationship types and property keys and indexed property values, enriched by categories or other configuration as defined in the applied Perspective (see xref::/bloom-perspectives/bloom-perspectives.adoc[Perspectives] for more detail).
@@ -64,16 +54,16 @@ See xref::/bloom-tutorial/full-text-search.adoc[Full-text search] tutorial topic
 
 == Actions
 
-Actions are phrases that trigger user-interface commands when typed in the search bar, e.g. `Clear Scene` will empty the canvas of the currently shown nodes and relationships.
+Actions are phrases that trigger user-interface commands when typed in the search bar, e.g. `Clear Scene` will empty the scene of the currently shown nodes and relationships.
 This lists some of the available Actions:
 
 * Invert selection - selects every unselected node and deselects any selected node/s.
-* Fit to selection - zooms in on the selection and centers it on the canvas.
+* Fit to selection - zooms in on the selection and centers it on the scene.
 * Expand selection - option to see everything directly connected to the selected node/s.
-* Clear Scene - empty the canvas.
+* Clear Scene - empty the scene.
 * Dismiss - removes everything selected.
 * Dismiss others - removes everything not selected.
-* Refresh Data - refreshes the data on the canvas.
+* Refresh Data - refreshes the data on the scene.
 * Redo - repeat the latest action.
 * Undo - undo the latest action.
 
