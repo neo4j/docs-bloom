@@ -111,15 +111,4 @@ Case insensitive matching of property values requires full-text indexes on all p
 Without full-text indexes, Bloom will use case sensitive searching even with `Case insensitive search and suggestions` enabled.
 ====
 
-== Classic search label:Deprecated[]
 
-[IMPORTANT]
-====
-The classic search was removed with Bloom 2.20.
-In earlier versions, this feature can be accessed from the Settings drawer, as mentioned further on.
-====
-
-The classic search is a little less fine-grained than the default option.
-It offers proactive suggestions that lets you build graph patterns step-by-step as well as use near-natural language for full-text search.
-It is not vastly different in functionality, but less intuitive and proactive.
-As mentioned, if you want to use the classic search, use the toggle in the xref::/bloom-visual-tour/settings-drawer.adoc[Settings] drawer.
