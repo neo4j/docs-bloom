@@ -8,9 +8,6 @@ It uses a vocabulary built from your graph and Perspective elements (categories,
 Uncategorized labels and relationships or properties hidden in the Perspective are not considered in the vocabulary.
 To build a graph pattern search in Bloom, you use this vocabulary and either build the pattern step by step or type in a near-natural language phrase.
 
-There are two different search experiences in Bloom, the default search and the classic search.
-To switch between the two, use the toggle in the xref::/bloom-visual-tour/settings-drawer.adoc[Settings] drawer.
-
 == Step-by-step pattern building with proactive suggestions
 
 One approach to building graph patterns is to use the proactive suggestions feature of Bloom.
@@ -118,7 +115,7 @@ Without full-text indexes, Bloom will use case sensitive searching even with `Ca
 
 [IMPORTANT]
 ====
-The classic search is removed with Bloom 2.20.
+The classic search was removed with Bloom 2.20.
 In earlier versions, this feature can be accessed from the Settings drawer, as mentioned further on.
 ====
 

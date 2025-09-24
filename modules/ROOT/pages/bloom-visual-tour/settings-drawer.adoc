@@ -12,7 +12,6 @@ The following can be controlled from this drawer:
 * *Node query limit* - can be adjusted within a range of 100-10000.
 * *Search timeout* - controls the duration of a search query.
 * *Case insensitive search and suggestions* - enables case insensitive use of both search and in suggestions.
-* *Classic search* - to disable the improved search function.
 //* *Logout timeout* - controls the time of inactivity before session is logged out, can be turned off to keep session active indefinitely.
 // * *Show restore Scene dialog* - allows you to restore the scene from your previous session.
 // +
