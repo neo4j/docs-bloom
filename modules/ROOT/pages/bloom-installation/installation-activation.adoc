@@ -36,10 +36,10 @@ See step 5 *Setup users/roles in the database* further on, see also link:https:/
 == Bloom server
 
 The Bloom server component installs as a Neo4j database plugin.
-Before you can begin, download the Bloom server package https://neo4j.com/deployment-center/?bloom[here] and make sure you have a valid activation key for the Bloom server.
+You can find the Bloom plugin in the _products_ folder of your Neo4j installation.
+The Bloom server package can also be downloaded link:https://neo4j.com/deployment-center/?bloom[here].
+Additionally, make sure you have a valid activation key for the Bloom server.
 The server activation key can be obtained from your Neo4j representative.
-
-
 
 [[installing-server-plugin]]
 === Installing server plugin
@@ -53,12 +53,13 @@ The Bloom server plugin compatible with Neo4j 2025.01 is named `bloom-plugin-6.x
 The `6.x` denotes compatibility with the current latest version of Neo4j.
 ====
 
-
 .*Installation Steps:*
 . *Get the Bloom server plugin*: Unzip the downloaded Bloom server package.
 The Bloom plugin (.jar file) to use depends on your Neo4j server version.
-For example, if you are using Neo4j 2025.01 and Bloom 2.18.1, use `bloom-plugin-6.x-2.18.1.jar`.
-. *Place the plugin*: First, take a look at the table in link:{operations-manual-base-uri}/current/configuration/file-locations/[Operations Manual -> File locations] to find where to put the Bloom plugin `.jar` file.
+For example, if you are using Neo4j 2025.10 and Bloom 2.28.0, use `bloom-plugin-6.x-2.28.0.jar`.
++
+Alternatively, locate the plugin in the _products_ folder in your Neo4j installation.
+. *Place the plugin*: First, take a look at the table in link:{operations-manual-base-uri}/current/configuration/file-locations/#neo4j-plugins[Operations Manual -> File locations] to find where to put the Bloom plugin `.jar` file.
 Make sure to copy the file to the correct plugins directory.
 . *Place the activation key*: Place the activation key file provided on the Neo4j database server.
 You may place the file in any location of your choice. To avoid getting the file inadvertently overwritten, you may place it outside the Neo4j installation directory.
