@@ -6,39 +6,38 @@
 label:enterprise-edition[Enterprise Edition]
 
 As mentioned in xref:bloom-perspectives/perspective-storage.adoc[Storage and sharing], when the Bloom server plugin is used, Perspectives are stored in a persistent Neo4j database.
-This means that not only can Perspectives and Scenes be shared between users, but also that administrators can control user-access to them.
-For a user to be able to create and/or edit a Perspective, they need to have link:https://neo4j.com/docs/cypher-manual/5/access-control/privileges-writes/[`WRITE`] access to the `\_Bloom_Perspective_` label and to the `\_Bloom_Scene_` label to be able to write to a Scene.
-Note that `WRITE` access is only needed to these two labels specifically, not the entire database.
+This means that not only can Perspectives and Scenes be shared between users, but also that administrators can control user-access to them by configuring RBAC on the database where the Perspective is stored.
 
-Also mentioned in xref:bloom-perspectives/perspective-storage.adoc[Storage and sharing], is creating custom roles for users which allows administrators to be more explicit with access control.
+To learn about access control, including role management, see link:{neo4j-docs-base-uri}/operations-manual/current/authentication-authorization/manage-privileges/[Operations Manual -> RBAC and fine-grained privileges].
+
+For a user to be able to *create and/or edit a Perspective*, they need to have link:{neo4j-docs-base-uri}/operations-manual/current/authentication-authorization/privileges-writes/[write] privileges to the `\_Bloom_Perspective_` label, and to the `\_Bloom_Scene_` label to be able to *write to a Scene*.
+Note that since the privilege is only needed to these two labels specifically, not the entire database, the write privilege can be specified accordingly.
+See the example below for more information on which write privileges are needed.
 
 Remember that all roles with Bloom access need to be authorized in the `neo4j.conf` file, using the `neo4j.bloom.authorization.role`(with Neo4j 4.x) or `dbms.bloom.authorization_role` (with Neo4j 5).
 See step 5 in xref:bloom-installation/installation-activation.adoc#installing-server-plugin[Installing server plugin] for more information.
 
-[NOTE]
-====
-Even more fine-grained access control is also possible, where administrators can control access down to _which property_ a user can access/edit.
-Access control, including role management, is described in detail in the link:https://neo4j.com/docs/operations-manual/current/authentication-authorization/manage-privileges/[Operations Manual -> RBAC and fine-grained privileges] section.
-====
-
-In addition to `WRITE` access to `\_Bloom_Perspective_` and the `\_Bloom_Scene_` labels, a role can be further refined with the link:https://neo4j.com/docs/cypher-manual/5/access-control/privileges-writes/#access-control-privileges-writes-create[`CREATE`] and the link:https://neo4j.com/docs/cypher-manual/5/access-control/privileges-writes/#access-control-privileges-writes-set-property[`SET PROPERTY`] privileges.
-By explicitly granting these, instead of a more universal `WRITE`, administrators can limit access to just creating new nodes and/or update properties in a Perspective or a Scene.
+You can grant `WRITE` access on the entire graph to a role, or you can create a custom role with more limited access.
+If you want to limit a role's access to only Perspectives and /or Scenes, you need to use a combination of the link:https://neo4j.com/docs/cypher-manual/5/access-control/privileges-writes/#access-control-privileges-writes-create[`CREATE`] and the link:https://neo4j.com/docs/cypher-manual/5/access-control/privileges-writes/#access-control-privileges-writes-set-property[`SET PROPERTY`] privileges to the `\_Bloom_Perspective_` and the `\_Bloom_Scene_` labels.
+By explicitly granting these, instead of the universal `WRITE`, administrators can limit access to just creating new nodes and/or update properties in a Perspective or a Scene.
 See the example further on for an example on how to create a custom role with limited access.
 
 If a user lacks appropriate access, applicable functionality is hidden in Bloom.
-For example, if a user has not been granted `WRITE` access to a Perspective, they are not able to see the _Create_ option in the Perspective gallery, they are not able to edit _saved Cypher_, and they are excluded from any modifications of the Perspective.
-Accordingly, if a user has not been granted `WRITE` access to a Scene, they are not able to see the _Add new Scene_ option in the Scene drawer.
+For example, if a user has not been granted write privileges to a Perspective, they are not able to see the _Create_ option in the Perspective gallery, they are not able to edit _saved Cypher_, and they are excluded from any modifications of the Perspective.
+Accordingly, if a user has not been granted write privileges to a Scene, they are not able to see the _Add new Scene_ option in the Scene drawer.
 
 [.shadow]
 image::temporary-scene.png[width=300]
 
-If a user lacks `WRITE` access to Scenes, their access is restricted to a _Temporary Scene_.
+If a user lacks write privileges to Scenes, their access is restricted to a _Temporary Scene_.
 This allows for styling and editing of the Scene, but the changes can't be saved and the Scene is lost at the end of the session.
 
 .Example role
 
-Below is an example of how to create a role, `custom`, with `READ` access.
-Users with this role can use a Scene fully, without having `WRITE` access.
+Below is an example of how to create a role, `custom`, with write access to a Scene.
+The `custom` role is created as a copy of the built-in `reader` role, and enhanced with additional priviliges.
+For more information about built-in roles, see link:{neo4j-docs-base-uri}/operations-manual/current/authentication-authorization/built-in-roles/[Operations Manual -> Built-in roles].
+Users with this role can use a Scene fully, without having `WRITE` access to the database.
 
 [source,cypher]
 ----
@@ -49,6 +48,11 @@ GRANT SET PROPERTY {*} ON GRAPH `neo4j` NODE _Bloom_Scene_ TO `custom`
 GRANT DELETE ON GRAPH `neo4j` NODE _Bloom_Scene_ TO `custom`
 GRANT DELETE ON GRAPH `neo4j` RELATIONSHIP _Bloom_HAS_SCENE_ TO `custom`
 ----
+
+[NOTE]
+====
+You have to grant `CREATE ON GRAPH neo4j RELATIONSHIP \_Bloom_HAS_SCENE_` to your role in order for users with the role to be able to create new Scenes.
+====
 
 == Perspective actions by database privileges
 
