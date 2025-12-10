@@ -10,7 +10,8 @@ This means that not only can Perspectives and Scenes be shared between users, bu
 
 To learn about access control, including role management, see link:{neo4j-docs-base-uri}/operations-manual/current/authentication-authorization/manage-privileges/[Operations Manual -> RBAC and fine-grained privileges].
 
-For a user to be able to *create and/or edit a Perspective*, they need to have link:{neo4j-docs-base-uri}/operations-manual/current/authentication-authorization/privileges-writes/[write] privileges to the `\_Bloom_Perspective_` label, and to the `\_Bloom_Scene_` label to be able to *write to a Scene*.
+For a user to be able to *create and/or edit a Perspective*, they need to have link:{neo4j-docs-base-uri}/operations-manual/current/authentication-authorization/privileges-writes/[write] privileges to the `\_Bloom_Perspective_` label.
+To be able to *create and/or edit Scenes*, they need write privileges to the `\_Bloom_Scene_` label.
 Note that since the privilege is only needed to these two labels specifically, not the entire database, the write privilege can be specified accordingly.
 See the example below for more information on which write privileges are needed.
 
@@ -53,6 +54,9 @@ GRANT DELETE ON GRAPH `neo4j` RELATIONSHIP _Bloom_HAS_SCENE_ TO `custom`
 ====
 You have to grant `CREATE ON GRAPH neo4j RELATIONSHIP \_Bloom_HAS_SCENE_` to your role in order for users with the role to be able to create new Scenes.
 ====
+
+If you want to restrict access to read-only without the possibility of making any changes, you can grant the `reader` role without any additional privileges.
+Note that this also prevents the user from performing any updates to the database through Bloom, such as adding nodes and relationships, or editing properties.
 
 == Perspective actions by database privileges
 
