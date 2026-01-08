@@ -10,17 +10,11 @@
 * GPU-enabled client machine or VM, discrete GPU is preferred.
 * WebGL available and enabled.
 Bloom will *not* function otherwise.
+* Chrome, Firefox or Edge web browser.
 
-[TIP]
-====
 Note that a GPU passthrough setup, with a discrete GPU assigned to each VM, can be used in case the VM on the client side doesn't have a GPU.
-====
 
-Neo4j Desktop hosted:::
-** Neo4j Desktop 1.2.5 and above.
 
-Web server hosted:::
-** Chrome, Firefox or Edge web browser.
 
 [TIP]
 ====
