@@ -8,20 +8,19 @@
 
 * User access to a Neo4j Enterprise Edition database.
 * GPU-enabled client machine or VM, discrete GPU is preferred.
+* WebGL available and enabled.
+Bloom will *not* function otherwise.
+* Chrome, Firefox or Edge web browser.
 
-[TIP]
 Note that a GPU passthrough setup, with a discrete GPU assigned to each VM, can be used in case the VM on the client side doesn't have a GPU.
 
-Neo4j Desktop hosted:::
-** Neo4j Desktop 1.2.5 and above.
 
-Web server hosted:::
-** Chrome, Firefox or Edge web browser.
 
 [TIP]
+====
 For faster search performance, it is highly recommended to set up indexes in the Neo4j database for all properties that should be searchable in Bloom.
 In general, full-text search indexes are recommended and are required if you want case-insensitive text matching.
-
+====
 
 [[compatibility-mode]]
 === Compatibility mode
@@ -30,10 +29,18 @@ Note that sometimes, due to compatibility issues between GPU and WebGL, the visu
 This issue is most common on Intel embedded GPUs running under a Linux operating system, but it may also be found in other configurations.
 Enabling `Graph layout compatibility mode` (found in `Settings` of the Bloom client) can help solve this issue and make the visualization appear.
 However, some of the application functionality may not work as expected.
-We recommend using a Windows or Mac client environment with discrete GPUs.
+It is recommended to use a Windows or Mac client environment with discrete GPUs.
 
 [.shadow]
 image::compatibility-mode.png[width=400,align="center"]
+
+[[visualization-issues]]
+=== Visualization issues
+
+Some environments can be problematic from a visualization point of view, such as virtual or remote desktop setups.
+Likewise, machines with GPU or hardware acceleration disabled can also experience visualization issues.
+If you are experiencing problems while operating from one of the mentioned setups, you need to adjust your environment in order for Bloom to function properly.
+Visualization issues caused by environment restrictions *cannot* be resolved by Bloom configuration changes.
 
 
 [[bloom-server]]
