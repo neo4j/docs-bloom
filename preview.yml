@@ -45,8 +45,8 @@ asciidoc:
     # sectnumlevel: 3,
     experimental: ''
     # update the copyright value with the first commit in a new year
-    copyright: 2025
-    # icon attributes 
+    copyright: 2026
+    # icon attributes
     check-mark: icon:check[]
     cross-mark: icon:times[]
     # neo4j.com attributes. Always use when linking to neo4j.com URLs
