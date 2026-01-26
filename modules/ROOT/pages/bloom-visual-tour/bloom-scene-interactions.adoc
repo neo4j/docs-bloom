@@ -119,11 +119,10 @@ In instances where you are interested in knowing more about _how_ various nodes 
 By default, the nodes and relationships in a scene are presented in a *force-based* layout.
 There are two different force-based layouts available:
 
-* *Force-based layout 1* - GPU accelerated layout that is fast and renders a quite dense and compact graph
-* *Force-based layout 2* - not accelerated by GPU so is slower but renders a more spread-out graph
+* *Force-based layout 1* - GPU accelerated layout that is fast and renders a quite dense and compact graph.
+* *Force-based layout 2* - not accelerated by GPU so is slower but renders a more spread-out graph.
 
 The difference between the two force-based layouts is most apparent when working with larger graphs.
-
 
 The *hierarchical*-layout option from the layout menu located at the bottom right-hand corner of the scene, presents the nodes in the Scene in an hierarchical order instead.
 The nodes are then arranged by the directionality of their relationships, determined by the way relationship directions are set up in the database.
@@ -148,6 +147,13 @@ You can scale both axes to find the right level of granularity for your dataset.
 
 [.shadow]
 image::coordinate-layout.png[width=800]
+
+A fourth option is to display your results in a *circular layout*.
+This can be useful when you want to highlight centrality for example, is any node more connected than others in the same category?
+
+[.shadow]
+image::circular-layout.jpg[width=800]
+The best choice of layout depends on many factors but mainly on the structure of your data and the nature of your queries.
 
 If you want to go back to the force-directed layout, just select the force-based layout from the layout menu.
 
