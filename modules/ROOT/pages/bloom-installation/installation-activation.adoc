@@ -29,7 +29,7 @@ For more information on licensing terms, refer to the Neo4j Desktop license agre
 ====
 Bloom is by default available to all users of the Neo4j database.
 This can be managed through role-based access control (RBAC) in Neo4j.
-See step 5 *Setup users/roles in the database* further on, see also link:https://neo4j.com/docs/operations-manual/current/authentication-authorization/[Operations Manual -> Authentication and authorization] for more information on users and roles.
+See step 5 *Setup users/roles in the database* further on, see also link:{operations-manual-base-uri}current/authentication-authorization/[Operations Manual -> Authentication and authorization] for more information on users and roles.
 ====
 
 [[installation-bloom-server]]
@@ -59,13 +59,13 @@ The Bloom plugin (.jar file) to use depends on your Neo4j server version.
 For example, if you are using Neo4j 2025.10 and Bloom 2.28.0, use `bloom-plugin-6.x-2.28.0.jar`.
 +
 Alternatively, locate the plugin in the _products_ folder in your Neo4j installation.
-. *Place the plugin*: First, take a look at the table in link:https://www.neo4j.com/docs/operations-manual/current/configuration/file-locations/#neo4j-plugins[Operations Manual -> File locations] to find where to put the Bloom plugin `.jar` file.
+. *Place the plugin*: First, take a look at the table in link:{operations-manual-base-uri}current/configuration/file-locations/#neo4j-plugins[Operations Manual -> File locations] to find where to put the Bloom plugin `.jar` file.
 Make sure to copy the file to the correct plugins directory.
 . *Place the activation key*: Place the activation key file provided on the Neo4j database server.
 You may place the file in any location of your choice. To avoid getting the file inadvertently overwritten, you may place it outside the Neo4j installation directory.
 . *Edit config file*: Then, you will need to edit the `neo4j.conf` configuration file of the database.
-Read link:{operations-manual-base-uri}/current/configuration/neo4j-conf/#neo4j-conf[Operations Manual -> The neo4j.conf file] section in order to learn more about the `neo4j.conf` file.
-You can find the default location for your OS link:https://www.neo4j.com/docs/operations-manual/current/configuration/file-locations/#file-locations-locations[Operations Manual -> File locations].
+Read link:{operations-manual-base-uri}current/configuration/neo4j-conf/#neo4j-conf[Operations Manual -> The neo4j.conf file] section in order to learn more about the `neo4j.conf` file.
+You can find the default location for your OS link:{operations-manual-base-uri}current/configuration/file-locations/#file-locations-locations[Operations Manual -> File locations].
 +
 You need to add a configuration setting with the path to the Bloom license file.
 The configuration setting depends on which version of Neo4j you are using.
@@ -217,7 +217,7 @@ When adding the plugin or changing the configuration file, you will need to rest
 Best practice for assigning Perspectives is to create a custom role for each Perspective, and add that role to each user who should have access to the Perspective in question.
 +
 Alternatively, if users create their own Perspectives, grant them a role where they have access to create new data in the database.
-See https://neo4j.com/docs/operations-manual/current/authentication-authorization/[Operations Manual -> Authentication and Authorization] for more info on roles in Neo4j.
+See link:{operations-manual-base-uri}current/authentication-authorization/[Operations Manual -> Authentication and Authorization] for more info on roles in Neo4j.
 +
 To learn more about sharing perspectives, please see xref::/bloom-perspectives/perspective-storage.adoc[Storage and sharing].
 
@@ -249,7 +249,7 @@ When constructing the URL, be mindful of how you configured the `server.unmanage
 
 [IMPORTANT]
 ====
-If using SSL, ensure that `dbms.ssl.policy.client_auth=NONE` is set in link:{operations-manual-base-uri}/current/configuration/neo4j-conf/#neo4j-conf[`neo4j.conf`].
+If using SSL, ensure that `dbms.ssl.policy.client_auth=NONE` is set in link:{operations-manual-base-uri}current/configuration/neo4j-conf/#neo4j-conf[`neo4j.conf`].
 ====
 
 Users need to log in with their credentials as configured for the Neo4j database.
