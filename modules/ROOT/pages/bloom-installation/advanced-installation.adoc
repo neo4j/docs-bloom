@@ -178,7 +178,7 @@ Remember to authorize all the roles who need Bloom access to the `neo4j.bloom.au
 
 It should now be possible to log into Bloom with the user _Lisa_ and create two perspectives, say _Nuclear waste_ and _Painting_.
 If _Lisa_ then assigns the _Nuclear waste_ perspective to _role_1_ and _Painting_ to _role_2_, the user _Homer_ will get the _Nuclear waste_ perspective when he logs in, but _Marge_ will get the _Painting_ perspective.
-See https://neo4j.com/docs/operations-manual/current/authentication-authorization/ldap-integration[Operations Manual -> LDAP Integration] to learn more about LDAP support in Neo4j.
+See link:{operations-manual-base-uri}current/authentication-authorization/ldap-integration[Operations Manual -> LDAP Integration] to learn more about LDAP support in Neo4j.
 
 
 
@@ -188,7 +188,7 @@ See https://neo4j.com/docs/operations-manual/current/authentication-authorizatio
 Neo4j Bloom provides support for Single Sign-On (SSO) providers.
 This is an Enterprise feature and requires specific configuration and a (self-hosted) Neo4j Server v4.4 and later.
 Additionally, you need a compatible SSO provider (local or external) already configured.
-For more information on the configuration, see link:https://neo4j.com/docs/operations-manual/current/authentication-authorization/sso-integration/#auth-sso-parameters[Operations Manual -> OIDC configuration settings^].
+For more information on the configuration, see link:{operations-manual-base-uri}current/authentication-authorization/sso-integration/#auth-sso-parameters[Operations Manual -> OIDC configuration settings^].
 
 
 Supported providers at this time include OpenID Connect (OIDC) OAuth 2.0 providers:
@@ -210,7 +210,7 @@ Mixed HTTP/HTTPS flows for single sign-on are not supported.
 ====
 
 Once your SSO provider is configured, you need to configure Neo4j to use OpenID Connect.
-This is done by updating the link:https://neo4j.com/docs/operations-manual/current/configuration/neo4j-conf/#neo4j-conf[`neo4j.conf`^] file according to the instructions in link:https://neo4j.com/docs/operations-manual/current/authentication-authorization/sso-integration/#auth-sso-configure-sso[Operations Manual -> Configure Neo4j to use OpenId Connect^].
+This is done by updating the link:{operations-manual-base-uri}current/configuration/neo4j-conf/#neo4j-conf[`neo4j.conf`^] file according to the instructions in link:{operations-manual-base-uri}current/authentication-authorization/sso-integration/#auth-sso-configure-sso[Operations Manual -> Configure Neo4j to use OpenId Connect^].
 
 Make sure to avoid duplicate entries in the `neo4j.conf` file.
 
@@ -325,14 +325,14 @@ Deep links also work with SSO authentication, where available.
 
 It is possible to install Bloom in a Docker container as well, using the standard Neo4j Enterprise Docker image.
 You can find all Neo4j Docker images https://hub.docker.com/_/neo4j/[here].
-For more information about the Neo4j Docker image, please see link:https://www.neo4j.com/docs/operations-manual/current/docker/introduction#docker-image[Operations Manual -> Using the Neo4j Docker image].
+For more information about the Neo4j Docker image, please see link:{operations-manual-base-uri}current/docker/introduction#docker-image[Operations Manual -> Using the Neo4j Docker image].
 
 [NOTE]
 --
 Installing the Bloom plugin in a Docker container is only available with Neo4j Enterprise version 4.2.3 or later.
 --
 
-The Neo4j Docker image includes a startup script which automatically downloads and lets you configure the Bloom plugin at runtime, see link:https://www.neo4j.com/docs/operations-manual/current/docker/operations/#docker-neo4jlabs-plugins[Operations Manual -> Configure Neo4j Labs plugins] for more information.
+The Neo4j Docker image includes a startup script which automatically downloads and lets you configure the Bloom plugin at runtime, see link:{operations-manual-base-uri}current/docker/operations/#docker-neo4jlabs-plugins[Operations Manual -> Configure Neo4j Labs plugins] for more information.
 
 Using the Bloom plugin requires a license, which can be provided as a shared volume in your Docker container:
 
@@ -374,10 +374,10 @@ This can be achieved by connecting to the Bloom plugin on the server that has th
 [NOTE]
 ====
 The server that has GDS installed is likely hosting the database in secondary mode and thus any `write` operations need to be routed to a database primary in the cluster.
-For this to be possible, _server-side routing_ needs to be enabled, please see link:https://www.neo4j.com/docs/operations-manual/current/clustering/setup/routing/#clustering-routing[Operations Manual -> Server-side routing] and link:https://neo4j.com/docs/graph-data-science/current/production-deployment/neo4j-cluster/[Graph Data Science Manual -> GDS with Neo4j cluster] for more information.
+For this to be possible, _server-side routing_ needs to be enabled, please see link:{operations-manual-base-uri}current/clustering/setup/routing/#clustering-routing[Operations Manual -> Server-side routing] and link:https://neo4j.com/docs/graph-data-science/current/production-deployment/neo4j-cluster/[Graph Data Science Manual -> GDS with Neo4j cluster] for more information.
 ====
 
-For more information about Neo4j clusters, see link:https://www.neo4j.com/docs/operations-manual/current/clustering/[Operations Manual -> Clustering].
+For more information about Neo4j clusters, see link:{operations-manual-base-uri}current/clustering/[Operations Manual -> Clustering].
 
 image::bloom-in-a-neo4j-cluster.svg[width=700,align="center"]
 
