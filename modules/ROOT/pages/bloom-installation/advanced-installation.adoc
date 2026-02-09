@@ -377,7 +377,7 @@ The server that has GDS installed is likely hosting the database in secondary mo
 For this to be possible, _server-side routing_ needs to be enabled, please see link:{operations-manual-base-uri}/current/clustering/setup/routing/#clustering-routing[Operations Manual -> Server-side routing] and link:https://neo4j.com/docs/graph-data-science/current/production-deployment/neo4j-cluster/[Graph Data Science Manual -> GDS with Neo4j cluster] for more information.
 ====
 
-For more information about Neo4j clusters, see link:{operations-manual-base-uri}/current/clustering/[Operations Manual -> Clustering].
+For more information about Neo4j clusters, see link:https://www.neo4j.com/docs/operations-manual/current/clustering/[Operations Manual -> Clustering].
 
 image::bloom-in-a-neo4j-cluster.svg[width=700,align="center"]
 
