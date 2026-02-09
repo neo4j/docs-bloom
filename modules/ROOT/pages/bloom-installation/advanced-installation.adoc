@@ -325,14 +325,14 @@ Deep links also work with SSO authentication, where available.
 
 It is possible to install Bloom in a Docker container as well, using the standard Neo4j Enterprise Docker image.
 You can find all Neo4j Docker images https://hub.docker.com/_/neo4j/[here].
-For more information about the Neo4j Docker image, please see link:{operations-manual-base-uri}/current/docker/introduction#docker-image[Operations Manual -> Using the Neo4j Docker image].
+For more information about the Neo4j Docker image, please see link:https://www.neo4j.com/docs/operations-manual/current/docker/introduction#docker-image[Operations Manual -> Using the Neo4j Docker image].
 
 [NOTE]
 --
 Installing the Bloom plugin in a Docker container is only available with Neo4j Enterprise version 4.2.3 or later.
 --
 
-The Neo4j Docker image includes a startup script which automatically downloads and lets you configure the Bloom plugin at runtime, see link:{operations-manual-base-uri}/current/docker/operations/#docker-neo4jlabs-plugins[Operations Manual -> Configure Neo4j Labs plugins] for more information.
+The Neo4j Docker image includes a startup script which automatically downloads and lets you configure the Bloom plugin at runtime, see link:https://www.neo4j.com/docs/operations-manual/current/docker/operations/#docker-neo4jlabs-plugins[Operations Manual -> Configure Neo4j Labs plugins] for more information.
 
 Using the Bloom plugin requires a license, which can be provided as a shared volume in your Docker container:
 
@@ -374,7 +374,7 @@ This can be achieved by connecting to the Bloom plugin on the server that has th
 [NOTE]
 ====
 The server that has GDS installed is likely hosting the database in secondary mode and thus any `write` operations need to be routed to a database primary in the cluster.
-For this to be possible, _server-side routing_ needs to be enabled, please see link:{operations-manual-base-uri}/current/clustering/setup/routing/#clustering-routing[Operations Manual -> Server-side routing] and link:https://neo4j.com/docs/graph-data-science/current/production-deployment/neo4j-cluster/[Graph Data Science Manual -> GDS with Neo4j cluster] for more information.
+For this to be possible, _server-side routing_ needs to be enabled, please see link:https://www.neo4j.com/docs/operations-manual/current/clustering/setup/routing/#clustering-routing[Operations Manual -> Server-side routing] and link:https://neo4j.com/docs/graph-data-science/current/production-deployment/neo4j-cluster/[Graph Data Science Manual -> GDS with Neo4j cluster] for more information.
 ====
 
 For more information about Neo4j clusters, see link:https://www.neo4j.com/docs/operations-manual/current/clustering/[Operations Manual -> Clustering].
