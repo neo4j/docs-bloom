@@ -120,7 +120,7 @@ This is selected when you create an AuraDB instance in the Neo4j Aura console.
 For more information, see link:https://neo4j.com/docs/aura/getting-started/create-instance/[Neo4j Aura -> Create an instance].
 
 [.shadow]
-image::louvain.png[width=800]
+image::louvain.jpg[width=800]
 
 === Running the algorithms
 
