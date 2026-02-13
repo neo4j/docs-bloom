@@ -135,4 +135,4 @@ This is done directly in the GDS drawer.
 The centrality algorithms are based on a range of values and can be either size-scaled or color gradient, while the community detection algorithms use unique values and offer unique colors to style the nodes.
 
 [.shadow]
-image::degree-centrality.png[width=800]
+image::degree-centrality.jpg[width=800]
