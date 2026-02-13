@@ -115,8 +115,12 @@ The `dbms.security.procedures.allowlist` setting needs to be uncommented and als
 
 With these in place, you can start Bloom and start searching to bring some data to your Scene to run the algorithms on.
 
+Alternatively, if you connect to a *Neo4j Aura instance*, GDS algorithms can run either in a separate compute environment via the serverless option, or in the same AuraDB instance as the database using the Graph Analytics plugin, sharing resources.
+This is selected when you create an AuraDB instance in the Neo4j Aura console.
+For more information, see link:https://neo4j.com/docs/aura/getting-started/create-instance/[Neo4j Aura -> Create an instance].
+
 [.shadow]
-image::louvain.png[width=800]
+image::louvain.jpg[width=800]
 
 === Running the algorithms
 
@@ -131,4 +135,4 @@ This is done directly in the GDS drawer.
 The centrality algorithms are based on a range of values and can be either size-scaled or color gradient, while the community detection algorithms use unique values and offer unique colors to style the nodes.
 
 [.shadow]
-image::degree-centrality.png[width=800]
+image::degree-centrality.jpg[width=800]
