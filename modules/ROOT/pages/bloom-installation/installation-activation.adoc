@@ -20,7 +20,7 @@ Your Desktop will automatically search for the latest version of Bloom and insta
 [IMPORTANT]
 ====
 The Bloom client's visualization and exploration features are available with any locally installed databases in Desktop.
-Access to a remote Neo4j database and features used for collaboration, such as persistent storage and security, require the <<_bloom_server, Bloom server>> component.
+Access to a remote Neo4j database and features used for collaboration, such as persistent storage and security, require the xref:bloom-installation/installation-activation.adoc#installation-bloom-server [Bloom server] component.
 ====
 
 For more information on licensing terms, refer to the Neo4j Desktop license agreement from the *About* section of Neo4j Desktop.
