@@ -67,7 +67,7 @@ This lists some of the available Actions:
 * Redo - repeat the latest action.
 * Undo - undo the latest action.
 
-See xref::/bloom-appendix/bloom-appendix.adoc#default-actions.adoc[Default actions and shortcuts] for the complete list and associated keyboard shortcuts.
+See xref::/bloom-appendix/bloom-appendix.adoc[Default actions and shortcuts] for the complete list and associated keyboard shortcuts.
 
 
 

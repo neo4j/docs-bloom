@@ -36,7 +36,7 @@ In this mode, the Bloom server component will be installed on the Neo4j database
 The database can be locally created in Desktop, or in a remote server instance or cluster.
 When the Bloom client connects to the Neo4j database, it checks for the presence of the Bloom server plugin.
 If found, the Bloom client relies on the server to provide storage and user authorization capabilities.
-Perspectives can be stored alongside your business data in the property graph, or configured to store in a xref::/bloom-installation/advanced-installation.adoc#storing-perspectives-in-different-db[separate Neo4j instance].
+
 
 image::bloom-app-in-neo4j-desktop.png[width=500,align="center"]
 

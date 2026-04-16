@@ -401,26 +401,3 @@ clients.allow_telemetry=true|false
 ----
 
 
-// [[storing-perspectives-in-different-db]]  ***not applicable after 2.3***
-// == Storing Perspectives in a different database
-//
-// If you prefer not to mix Perspective information with your other business data in the graph, the Bloom server can be configured to store Perspective information in a separate Neo4j database.
-// In order to store perspectives in another Neo4j database, you have to specify bolt address and credentials required to connect to that database in the `neo4j.conf` configuration file as below.
-// // When used with a Neo4j 3.5 database, both `bolt` or `bolt+routing` protocols can be used.
-// //
-// // [NOTE]
-// // --
-// // This configuration is currently only available with the Bloom 3.x server plugin, i.e. when used with Neo4j 3.5 databases.
-// // --
-//
-// [source, conf, indent=0]
-// ----
-// neo4.bloom.perspectiveStore=bolt://[host]:[port],[username],[password]
-// neo4.bloom.perspectiveStore=bolt+routing://[host]:[port],[username],[password]
-// ----
-//
-// [CAUTION]
-// --
-// This method requires the password to be stored in plain text in the `neo4j.conf` file.
-// Please ensure only authorized individuals have access to the configuration file.
-// --
