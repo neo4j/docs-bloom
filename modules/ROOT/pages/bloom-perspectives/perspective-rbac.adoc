@@ -33,21 +33,25 @@ image::temporary-scene.png[width=300]
 If a user lacks write privileges to Scenes, their access is restricted to a _Temporary Scene_.
 This allows for styling and editing of the Scene, but the changes can't be saved and the Scene is lost at the end of the session.
 
-.Example role
+== Example roles
 
-Below is an example of how to create a role, `custom`, with write access to a Scene.
-The `custom` role is created as a copy of the built-in `reader` role, and enhanced with additional priviliges.
+You can create custom roles as a copy of built-in roles, and then enhance them with additional privileges, or you can build them from scratch.
+The following examples achieve the same goal of restricting users to read access to the database, while allowing them to edit Perspectives and Scenes in Bloom.
+
+The first example describes how to create a role, `custom`, with write access to a Scene.
+The `custom` role is created as a copy of the *built-in `reader` role*, and enhanced with additional priviliges.
 For more information about built-in roles, see link:{neo4j-docs-base-uri}/operations-manual/current/authentication-authorization/built-in-roles/[Operations Manual -> Built-in roles].
 Users with this role can use a Scene fully, without having `WRITE` access to the database.
+However, they need to have a Perspective shared with them since they can't create their own.
 
 [source,cypher]
 ----
-CREATE ROLE custom AS COPY OF reader;
-GRANT CREATE ON GRAPH `neo4j` NODE _Bloom_Scene_ TO `custom`;
-GRANT CREATE ON GRAPH `neo4j` RELATIONSHIP _Bloom_HAS_SCENE_ TO `custom`;
-GRANT SET PROPERTY {*} ON GRAPH `neo4j` NODE _Bloom_Scene_ TO `custom`;
-GRANT DELETE ON GRAPH `neo4j` NODE _Bloom_Scene_ TO `custom`;
-GRANT DELETE ON GRAPH `neo4j` RELATIONSHIP _Bloom_HAS_SCENE_ TO `custom`;
+CREATE ROLE custom AS COPY OF reader
+GRANT CREATE ON GRAPH `neo4j` NODE _Bloom_Scene_ TO `custom`
+GRANT CREATE ON GRAPH `neo4j` RELATIONSHIP _Bloom_HAS_SCENE_ TO `custom`
+GRANT SET PROPERTY {*} ON GRAPH `neo4j` NODE _Bloom_Scene_ TO `custom`
+GRANT DELETE ON GRAPH `neo4j` NODE _Bloom_Scene_ TO `custom`
+GRANT DELETE ON GRAPH `neo4j` RELATIONSHIP _Bloom_HAS_SCENE_ TO `custom`
 ----
 
 [NOTE]
@@ -55,8 +59,43 @@ GRANT DELETE ON GRAPH `neo4j` RELATIONSHIP _Bloom_HAS_SCENE_ TO `custom`;
 You have to grant `CREATE ON GRAPH neo4j RELATIONSHIP \_Bloom_HAS_SCENE_` to your role in order for users with the role to be able to create new Scenes.
 ====
 
+To allow users with the `custom` role to create Perspectives, they need the same permissions to the `\_Bloom_Perspective_` label:
+
+[source,cypher]
+----
+GRANT CREATE ON GRAPH `neo4j` NODE _Bloom_Perspective_ TO `custom`;
+GRANT SET PROPERTY {*} ON GRAPH `neo4j` NODE _Bloom_Perspective_ TO `custom`;
+GRANT DELETE ON GRAPH `neo4j` NODE _Bloom_Perspective_ TO `custom`;
+----
+
 If you want to restrict access to read-only without the possibility of making any changes, you can grant the `reader` role without any additional privileges.
 Note that this also prevents the user from performing any updates to the database through Bloom, such as adding nodes and relationships, or editing properties.
+
+The other option is to create a `custom` role from scratch.
+The role needs to have similar access rights as the built-in `reader` role on the graph:
+
+[source,cypher]
+----
+CREATE ROLE custom
+GRANT ACCESS ON DATABASE `neo4j` TO `custom`;
+GRANT SHOW CONSTRAINT ON DATABASE `neo4j` TO `custom`;
+GRANT SHOW INDEX ON DATABASE `neo4j` TO `custom`;
+/*
+ The statement below can be limited to what the role is allowed to see.
+ If access needs to be more granular,
+ MATCH access to _Bloom_Perspective_, _Bloom_Scene_ and _Bloom_HAS_SCENE_
+ has to be explicitly given here as well.
+*/
+GRANT MATCH {*} ON GRAPH `neo4j` TO `custom`;
+----
+
+Both examples above create a `custom` role with read-only access to the database and write access to Perspectives and Scenes in Bloom.
+However, if a user with this role  is the *first* user to access the database from Bloom, they also need the following privilege to be able to create the *first* Perspective and Scene:
+
+[source,cypher]
+----
+GRANT CREATE NEW PROPERTY NAME ON DATABASE `neo4j` TO `custom`;
+----
 
 == Perspective actions by database privileges
 
