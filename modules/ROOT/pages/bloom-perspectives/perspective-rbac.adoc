@@ -46,12 +46,12 @@ However, they need to have a Perspective shared with them since they can't creat
 
 [source,cypher]
 ----
-CREATE ROLE custom AS COPY OF reader
-GRANT CREATE ON GRAPH `neo4j` NODE _Bloom_Scene_ TO `custom`
-GRANT CREATE ON GRAPH `neo4j` RELATIONSHIP _Bloom_HAS_SCENE_ TO `custom`
-GRANT SET PROPERTY {*} ON GRAPH `neo4j` NODE _Bloom_Scene_ TO `custom`
-GRANT DELETE ON GRAPH `neo4j` NODE _Bloom_Scene_ TO `custom`
-GRANT DELETE ON GRAPH `neo4j` RELATIONSHIP _Bloom_HAS_SCENE_ TO `custom`
+CREATE ROLE custom AS COPY OF reader;
+GRANT CREATE ON GRAPH `neo4j` NODE _Bloom_Scene_ TO `custom`;
+GRANT CREATE ON GRAPH `neo4j` RELATIONSHIP _Bloom_HAS_SCENE_ TO `custom`;
+GRANT SET PROPERTY {*} ON GRAPH `neo4j` NODE _Bloom_Scene_ TO `custom`;
+GRANT DELETE ON GRAPH `neo4j` NODE _Bloom_Scene_ TO `custom`;
+GRANT DELETE ON GRAPH `neo4j` RELATIONSHIP _Bloom_HAS_SCENE_ TO `custom`;
 ----
 
 [NOTE]
