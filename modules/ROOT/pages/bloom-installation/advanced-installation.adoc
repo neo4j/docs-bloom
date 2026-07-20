@@ -12,7 +12,7 @@ In this case, the Bloom client UI (provided as a separate package) is hosted by 
 The Bloom client connects to the Neo4j database, either via serving a json file containing the Neo4j database discovery URL, or by using a _connectURL_ parameter.
 This is described in detail further on.
 
-image::web-server-hosted-bloom-client.svg[width=550,align="center"]
+image::web-server-hosted-bloom-client.svg["Architecture for a web-server-hosted Bloom client: a user runs the Bloom client in a web browser, which (1) connects over HTTP to a separate web server hosting the Bloom client UI assets, (2) receives the client UI and a database discovery URL, then (3) connects over BOLT to the BOLT server of the Neo4j server, which also contains the Bloom Server plug-in and the Neo4j DBMS",width=550,align="center"]
 
 For scenarios where you want to host Bloom client on a web server separate from the Neo4j database server, the Bloom client UI is available as a web asset bundle.
 The Bloom plugin is still required to be installed on the Neo4j database server, see xref:bloom-installation/installation-activation.adoc#installing-server-plugin[Installing server plugin] for more information.
@@ -379,7 +379,7 @@ For this to be possible, _server-side routing_ needs to be enabled, please see l
 
 For more information about Neo4j clusters, see link:{operations-manual-base-uri}current/clustering/[Operations Manual -> Clustering].
 
-image::bloom-in-a-neo4j-cluster.svg[width=700,align="center"]
+image::bloom-in-a-neo4j-cluster.svg["Architecture for Bloom in a Neo4j cluster: a user runs the Bloom client in a web browser and (1) connects over HTTP to the Neo4j web server on a database primary (or a GDS-enabled server), (2) loads the client UI assets from the Bloom Server plug-in, then (3) connects to the cluster using BOLT+Routing; the cluster is drawn as database primaries with a leader plus database secondaries, each running a BOLT server and Bloom Server plug-in",width=700,align="center"]
 
 [[bloom-telemetry]]
 == Settings for Product Analytics
