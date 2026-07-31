@@ -6,6 +6,8 @@ nav:
 - modules/ROOT/content-nav.adoc
 asciidoc:
   attributes:
+    page-tabs: tools@
+    page-tabs-index: 10
     neo4j-buildnumber: '5.13'
     docs-version: '2.35'
 
