@@ -12,7 +12,7 @@ This chapter introduces the main features and components of Neo4j Bloom .
 
 The core set of Bloom features can be visualized as shown in this picture.
 
-image::image20.png[width=800]
+image::image20.png["The six core Bloom features arranged around the Neo4j Bloom logo: Perspective, Visualization, Search, Editing, Inspection, and Exploration",width=800]
 
 * *Perspective* - the lens through which you view graph data, can be customized for different business purposes.
 See xref::/bloom-perspectives/bloom-perspectives.adoc[] or watch the link:https://www.youtube.com/watch?v=GV3WCEsHRYI&list=PL9Hl4pk2FsvWqH11v_WXVNIgb4iHjqHgs[Bloom video series] for more details on this feature.
