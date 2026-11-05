@@ -31,7 +31,7 @@
 ** xref:bloom-tutorial/slicer.adoc[]
 ** xref:bloom-tutorial/export-data.adoc[]
 ** xref:bloom-tutorial/deep-links.adoc[]
+* xref:migrate-to-nes.adoc[Migrate to Enterprise Studio]
 * Appendix
 ** xref:bloom-appendix/bloom-appendix.adoc#default-actions[Default actions and shortcuts]
-** xref:bloom-appendix/migrate-to-nes.adoc[Migrate Neo4j Enterprise Studio]
 //** xref:bloom-appendix/logs.adoc[]
