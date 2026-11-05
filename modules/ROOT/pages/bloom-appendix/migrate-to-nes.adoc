@@ -191,7 +191,7 @@ assetStore:
 ----
 +
 *Do not write the client secret into the `config.yaml` file.*
-Enterprise Studio does not perform _`${VAR}`_ interpolation in the file.
+Enterprise Studio does not perform `$\{VAR}` interpolation in the file.
 Instead, a placeholder would be sent literally as the secret.
 Supply the secret at runtime via an environment variable override instead:
 +
