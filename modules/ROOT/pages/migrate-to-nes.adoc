@@ -230,4 +230,54 @@ Or resolve it from a cloud secrets manager (recommended for production):
 The `clientSecret` and `clientSecretFrom` are mutually exclusive and *exatly one* must be set (via file, environment, or secret reference).
 ====
 
+== Migrate Perspectives and Scenes
+
+You can also migrate your Perspectives and any Scenes belonging to the Perspectives to the asset storage in Enterprise Studio.
+This way, you can use Perspectives and Scenes you have created in Desktop or standalone Bloom, in Enterprise Studio.
+Note that you need to be a `studioAdmin` in Enterprise Studio to perform the migration (see link:{neo4j-docs-base-uri}/enterprise-studio/current/administration/#role-mapping[Enterprise Studio -> Role mapping] for more information).
+
+
+[.shadow]
+.Manage Perspectives
+image::manage-perspectives.png[width=full]
+
+The migration is done from the *Perspective* gallery, located on the left of the Settings header.
+Use the *Manage Perspectives* button to access the available Perspectives.
+Select the *Plugin* tab and choose which Perspective(s) to migrate from the plugin.
+
+[.shadow]
+.Migrate Perspectives
+image::migrate-perspective.png[width=full]
+
+Use *Migrate selected* to continue.
+
+The next step allows you to migrate any Scenes associated with the Perspective(s) by checking the *Migrate Scenes* box.
+
+Additionally, if the Perspective is shared with any database roles on the plugin-side, you can opt to migrate this as well, to Enterprise Studio by checking the *Keep group sharing* box.
+In that case, Enterprise Studio assigns the same roles and assign them as `VIEWER` of the Perspective/Scene.
+This means that any users with access via their database roles, can *view* the Perspective (and Scenes), but *not* edit it.
+The owner of the Perspective is the only user that can make any changes to the Perspective.
+
+The next step allows you to assign ownership of the migrated Perspective and associated Scenes.
+If you migrate *multiple* Perspectives, *ownership applies to all of them*.
+Select which Enterprise Studio user should own the migrated Perspective(s).
+
+If you have opted to migrate *Scenes* as well, this step allows you to select which Enterprise Studio user to assign the Scenes in each Perspective to.
+You can re-assign ownership to any listed user, it *can be a different user than the Perspective owner*.
+The list of migrated Scenes includes the plugin user who created the Scene(s).
+If that user exists as an Enterprise Studio user, they are preselected, otherwise the default is the owner of the associated Perspective.
+If a plugin user has created *multiple Scenes*, they *must all be assigned to the same Enterprise Studio user*.
+
+The last step allows you to review the selections you have made and show Perspectives, Scenes, and their respective ownerships.
+Use the *Back* button if you need to change anything, or else *Confirm migration* to complete the migration.
+
+If you want to change Perspective ownership after the migration, you can do so from the *[...]* menu on the Perspective in the *Current* tab.
+You access this via the *Manage perspectives* button in the Perspective drawer.
+
+Note that you *cannot* change the ownership of the Scene after the migration.
+
+Another way of accessing Perspectives you have created in Desktop or standalone Bloom in Enterprise Studio, is to export them from their original location and then importing them in Enterprise Studio.
+For more information on how to do this, see link:https://neo4j.com/docs/aura/getting-started/migrate-metadata/#_perspectives[Neo4j Aura -> Migrate metadata -> Perspectives].
+Note that exporting and importing a Perspective *does not include associated Scenes*.
+
 
