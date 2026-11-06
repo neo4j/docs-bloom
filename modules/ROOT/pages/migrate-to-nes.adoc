@@ -155,7 +155,7 @@ However, to enable individual user asset sharing (sharing Perspectives, Scenes, 
 +
 ** *Individual sharing requirement*: To allow Enterprise Studio to list and select individual SSO users in sharing modals, enable local user enforcement in `neo4j.conf`on target deployments:
 +
-[source,cypher]
+[source,conf]
 ----
 # Add to neo4j.conf on target Neo4j deployments
 dbms.security.require_local_user=true
@@ -176,7 +176,7 @@ In production environments, authentication for this service connection can use O
 .. Configure Enterprise Studio storage connection (`config.yaml`)
 Configure Enterprise Studio to authenticate its service connection using the client credewntials token endpoint:
 +
-[source,cypher]
+[source,yaml]
 ----
 assetStore:
   default:
