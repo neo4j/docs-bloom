@@ -197,7 +197,6 @@ Supply the secret at runtime via an environment variable override instead:
 +
 [source,bash]
 ----
-bash
 Export
 NES_assetStore_default_authentication_oidc_clientSecret="your-client-secret"
 ----
