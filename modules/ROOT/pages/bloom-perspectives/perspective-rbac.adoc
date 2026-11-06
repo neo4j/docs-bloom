@@ -35,8 +35,7 @@ This allows for styling and editing of the Scene, but the changes can't be saved
 
 [NOTE]
 ====
-You need to explicitly share a Perspective or Scene with another user for them to have access to it at all.
-You can either share with a specific user or a user role.
+You need to explicitly share a Perspective or Scene with another user's role for them to have access to it at all.
 A database `admin` role *does not* by default have access to all Perspectives and Scenes.
 ====
 
