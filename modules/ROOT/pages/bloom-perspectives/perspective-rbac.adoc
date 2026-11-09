@@ -33,13 +33,20 @@ image::temporary-scene.png[width=300]
 If a user lacks write privileges to Scenes, their access is restricted to a _Temporary Scene_.
 This allows for styling and editing of the Scene, but the changes can't be saved and the Scene is lost at the end of the session.
 
+[NOTE]
+====
+You need to explicitly share a Perspective or Scene with another user's role for them to have access to it at all.
+A database `admin` role *does not* by default have access to all Perspectives and Scenes.
+====
+
+
 == Example roles
 
 You can create custom roles as a copy of built-in roles, and then enhance them with additional privileges, or you can build them from scratch.
 The following examples achieve the same goal of restricting users to read access to the database, while allowing them to edit Perspectives and Scenes in Bloom.
 
 The first example describes how to create a role, `custom`, with write access to a Scene.
-The `custom` role is created as a copy of the *built-in `reader` role*, and enhanced with additional priviliges.
+The `custom` role is created as a copy of the *built-in `reader` role*, and enhanced with additional privileges.
 For more information about built-in roles, see link:{neo4j-docs-base-uri}/operations-manual/current/authentication-authorization/built-in-roles/[Operations Manual -> Built-in roles].
 Users with this role can use a Scene fully, without having `WRITE` access to the database.
 However, they need to have a Perspective shared with them since they can't create their own.
