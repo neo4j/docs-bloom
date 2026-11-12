@@ -280,3 +280,96 @@ For more information on how to do this, see link:https://neo4j.com/docs/aura/get
 Note that exporting and importing a Perspective *does not include associated Scenes*.
 
 
+== Embed Enterprise Studio in an iframe
+
+=== Enable cross-origin embedding
+
+By default, Enterprise Studio sends a Content-Security-Policy (CSP) header ending with `frame-ancestors 'self'`, so it can only be framed from the same origin.
+To allow specific origins to embed Enterprise Studio, you need to override the directive:
+
+[source, yaml]
+----
+server:
+ contentSecurityPolicyDirectives:
+   frame-ancestors: "'self' app.example.com"
+----
+
+This replaces `frame-ancestors 'self'` in the effective CSP; multiple sources are space-separated.
+Sources are validated at startup and each must be a valid CSP source expression (`'self'`, `'none'`, a scheme such as `'https:'`, or a host such as `https://app.example.com`).
+When you use `'none'`, it must be the *only* entry.
+The environment variable equivalent is `NES_server_contentSecurityPolicyDirectives` (_JSON_ object, e.g. `"{frame-ancestors":"app.example.com"}`).
+
+The same map overrides any other directive as well:
+
+[source, yaml]
+----
+server:
+ contentSecurityPolicyDirectives:
+   img-src: "'self' data: https://images.example.com"
+----
+
+Directive names are validated against an allowlist of known CSP directives.
+This means that a typo such as `scripts-src` fails startup instead of silently shipping a policy that does nothing.
+Values may *not* contain `;` or new lines (that would inject extra directives or headers) and may *not* be empty, *except* for the values directives `block-all-mixed-content` and `upgrade-insecure-requests`.
+A `frame-ancestors` value must list at least one source. An invalid configuration fails fast at startup with the exact key, for example:
+
+----
+server.contentSecurityPolicyDirectives.scripts-src: "scripts-src" is not a known CSP directive name
+----
+
+To replace the whole header, set `server.contentSecurityPolicyHeader` (`NES_server_contentSecurityPolicyHeader`).
+When set explicitly, it takes precedence and `server.contentSecurityPolicyDirectives` is ignored and a warning is logged.
+Setting it to `""` disables the CSP header entirely.
+
+Frame protection is CSP-only, Enterprise Studio does not emit an `X-Frame-Options` header.
+
+=== Verify the effective header
+
+First, check what a running server actually emits:
+
+[source, curl]
+----
+curl -s -D - -o /dev/null http://localhost:8080/ | grep -i content-security-policy
+----
+
+The response header is the single source of truth since it already includes any `contentSecurityPoliceDirectives`-overrides merged onto the default policy.
+
+=== Browser limitations
+
+Enterprise Studio does not use any cookies.
+Authentication is a per-request `Authorization` header, and credentials live in the browser's web storage (localStorage/sessionStorage).
+So the usual third-party-cookie problem does not apply.
+The real cross-origin iframe risk is *storage partitioning* or *blocking* instead of cookies.
+
+SSO sign-in (OIDC) opens the identity provider in a top-level popup window, not inside the iframe, so framing does not block the login flow itself.
+
+Two distinct browser behaviors matter:
+
+* *Storage partitioned* (Safari ITP, Chrome third-party storage defaults): Enterprise Studio keeps working but its storage is scoped to the embedding site and may expire aggressively.
+For example, Safari ITP can evict script-written storage after days without interaction.
+You can expect periodic re-logins and lost UI-state.
+
+* *Storage hard-blocked*: The app cannot boot.
+The storage guard in `static/index.html` detects the failure, prevents the app bundle from loading, and renders a "Local storage is disabled" error page.
+Its in-memory fallback only prevents scripts from crashing, it is not a working mode.
+Safari-specific: Test embedding in real Safari as Playwright WebKit does not fully emulate ITP partitioning and expiry.
+The most robust mitigation is serving Enterprise Studio and the embedding app from the same site.
+
+=== Troubleshooting
+
+* *Server fails to start with* `is not a known CSP directive name`: Typo in a `content SecurityPolicyDirectives` key, e.g. `scripts-src` instead of `script-src`.
+
+* *Server fails to start with* `must list at least one source` *or* `must not be empty`: A directive value is empty or whitespace-only. `frame-ancestors` needs at least one source, only `block-all-mixed-content` and `upgrade-insecure-requests` may be valueless.
+
+* *Page refuses to load in the iframe ("refused to frame")*: The embedding origin is not in `frame-ancestors`.
+Check the browser console for the exact CSP violation and get the origin it reports.
+Keep in mind that scheme matters, `https://` is *not* optional there.
+
+* *Config valid but frame is still blocked*: Check whether:
+`server.contentSecurityPolicyHeader` is also set, as it takes precedence over `serverContentSecurityPolicyDirectives`.
+Look for the startup warning in the logs.
+
+* *Enterprise Studio shows a "Local storage is disabled" error page*: The iframe's storage is hard-blocked and the app cannot boot.
+Allow third-party storage/cookies for the Enterprise Studio origin in the browser, or serve Enterprise Studio and the embedding from the same site.
+
+* *Enterprise Studio works, but users are logged out again after some days*: Safari ITP expires partitioned storage. Same-site serving avoids this.
