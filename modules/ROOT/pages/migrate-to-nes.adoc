@@ -311,7 +311,8 @@ server:
 Directive names are validated against an allowlist of known CSP directives.
 This means that a typo such as `scripts-src` fails startup instead of silently shipping a policy that does nothing.
 Values may *not* contain `;` or new lines (that would inject extra directives or headers) and may *not* be empty, *except* for the values directives `block-all-mixed-content` and `upgrade-insecure-requests`.
-A `frame-ancestors` value must list at least one source. An invalid configuration fails fast at startup with the exact key, for example:
+A `frame-ancestors` value must list at least one source. 
+An invalid configuration fails fast at startup with the exact key, for example:
 
 ----
 server.contentSecurityPolicyDirectives.scripts-src: "scripts-src" is not a known CSP directive name
