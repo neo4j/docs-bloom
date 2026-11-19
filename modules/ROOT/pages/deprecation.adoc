@@ -1,0 +1,20 @@
+= Deprecation of Bloom standalone versions
+:description: This page introduces and explains the deprecation on Neo4j Bloom standalone version
+
+As of January 1st, 2027, all new Bloom features will appear only in the Neo4j Studio suite of products.
+Specifically, Bloom updates will appear in Studio tools within the Aura console, Neo4j Enterprise Studio for self-managed installations, and Neo4j Desktop Studio tools.
+
+Standalone versions of Bloom will continue to receive support and security updates through the end of existing contracts.
+
+Products affected include:
+
+* The Neo4j Bloom package for self-hosting, available from the link:https://neo4j.com/deployment-center/[Deployment center].
+* link:https://bloom.neo4j.io/[]
+* Neo4j Bloom bundled with LTS versions of the database
+* The Neo4j Bloom Enterprise plugin
+
+Users interested in migrating from Bloom standalone to Neo4j Enterprise Studio, see xref:migrate-to-nes.adoc[Migrate to Neo4j Enterprise Studio].
+
+Aura users can simply switch to link:https://console.neo4j.io/[console.neo4j.io] and access Bloom from the Studio tools in the Aura console.
+Note that if you are using a database with the Bloom Enterprise plugin provisioned in the Aura console, you can continue to access your Scenes and Perspectives.
+In the event that Perspectives are missing for individual users, these can be exported via the gallery in Bloom standalone and imported into Bloom in the console.

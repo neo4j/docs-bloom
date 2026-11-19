@@ -1,4 +1,5 @@
 * xref:index.adoc[]
+* xref:deprecation.adoc[]
 * xref:about-bloom.adoc[]
 * xref:bloom-quick-start.adoc[]
 * xref:bloom-installation/index.adoc[]
