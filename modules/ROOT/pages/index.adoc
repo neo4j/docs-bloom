@@ -27,15 +27,21 @@ Neo4j Bloom is a graph exploration application for visually interacting with gra
 
 A graph puts any information into context, connecting all the dots.
 People, places and things.
-Products, services and accounts. 
+Products, services and accounts.
 Transactions, identities and events.
 Neo4j Bloom shows the patterns you intuitively know are there in your data, and reveals new patterns you may not have expected.
 This new data vision opens up new ways of thinking, new ways of working and new possibilities.
-And it's fun.
 
-Neo4j Bloom is powered by the Neo4j graph database, an immensely powerful engine for storing and querying connected data.
+Neo4j Bloom is powered by the Neo4j graph database, an powerful engine for storing and querying connected data.
 Bloom wraps that power into an interactive graph visualization environment, presenting a business view of the graph.
 
+Neo4j Bloom is available as a standalone product, as described in this guide, but also a *Studio tool* available in link:{neo4j-docs-base-uri}/aura[Neo4j Aura], link:{neo4j-docs-base-uri}/enterprise-studio/current[Neo4j Enterprise Studio], and link:{neo4j-docs-base-uri}/desktop/current[Neo4j Desktop].
+
+[IMPORTANT]
+====
+As of January 1st, 2027, the standalone versions of Bloom will be deprecated.
+See xref:deprecation.adoc[] for more information.
+====
 
 [.lead]
 *Contents of this guide*
